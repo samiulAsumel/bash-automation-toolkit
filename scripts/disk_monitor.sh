@@ -9,9 +9,11 @@ THRESHOLD=80          # percent — alert when usage >= this value
 CRITICAL_THRESHOLD=95 # percent — critical alert level
 
 # Filesystems to skip (pseudo/virtual/network mounts)
-EXCLUDE_TYPES="tmpfs,devtmpfs,sysfs,proc,cgroup,cgroup2,pstore,bpf,\
-hugetlbfs,mqueue,debugfs,tracefs,securityfs,configfs,fusectl,\
-efivarfs,autofs,overlay,squashfs"
+EXCLUDE_TYPES=(
+    tmpfs devtmpfs sysfs proc cgroup cgroup2 pstore bpf
+    hugetlbfs mqueue debugfs tracefs securityfs configfs
+    fusectl efivarfs autofs overlay squashfs
+)
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 log() {
@@ -55,9 +57,13 @@ while IFS= read -r line; do
         log "INFO"     "OK:       $MOUNT ($FILESYSTEM) — ${USE_PCT}% used | Size:$SIZE Used:$USED Avail:$AVAIL"
     fi
 
-done < <(df -x tmpfs --output=source,size,used,avail,pcent,target \
+# Build -x exclusion flags from array
+_DF_ARGS=()
+for _t in "${EXCLUDE_TYPES[@]}"; do _DF_ARGS+=(-x "$_t"); done
+
+done < <(df "${_DF_ARGS[@]}" --output=source,size,used,avail,pcent,target \
     | tail -n +2 \
-    | grep -vE "^(tmpfs|devtmpfs|none|udev|/dev/loop)" \
+    | grep -vE "^(/dev/loop|none|udev)" \
     || true)
 
 # ── Summary ──────────────────────────────────────────────────────────────────

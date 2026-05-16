@@ -5,8 +5,6 @@ trap 'echo "[ERROR] Script failed at line $LINENO." >&2' ERR
 
 # ── Constants ────────────────────────────────────────────────────────────────
 HEALTH_LOG="/var/log/service_health.log"
-RESTART_COOLDOWN=60    # seconds to wait before a second restart attempt is logged
-MAX_RESTARTS=3         # alert if a service has been restarted this many times in one run
 
 # Services to monitor — add/remove as needed
 SERVICES=(

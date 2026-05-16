@@ -27,7 +27,7 @@ require_root
 mkdir -p "$REPORT_DIR"
 
 # If a report already exists for today, overwrite (idempotent reruns)
-> "$REPORT_FILE"
+: > "$REPORT_FILE"
 
 # ── Report Generation ────────────────────────────────────────────────────────
 {

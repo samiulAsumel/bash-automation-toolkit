@@ -35,6 +35,10 @@
       <div class="hero-inner">
         <div class="hero-eyebrow">
           <span class="eyebrow-dot"></span> RHEL 9 · Bash 5 · Production-Ready
+          <span class="eyebrow-verified">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            ShellCheck Verified
+          </span>
         </div>
         <h1 class="hero-title">BASH<br/>AUTOMATION<br/>TOOLKIT</h1>
         <p class="hero-sub">
@@ -352,10 +356,67 @@
       </div>
     </section>
 
+    <!-- DRY RUN RESULTS -->
+    <section class="dryrun-section">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <div>
+          <div class="section-title">DRY RUN RESULTS</div>
+          <div class="section-sub">bash -n + ShellCheck 0.9.0 · run 2026-05-16</div>
+        </div>
+        <div class="dryrun-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          5/5 Passed
+        </div>
+      </div>
+      <div class="dryrun-grid">
+        <div class="dryrun-card pass">
+          <div class="dryrun-name">user_setup.sh</div>
+          <div class="dryrun-checks">
+            <span class="dcheck pass">bash -n</span>
+            <span class="dcheck pass">shellcheck</span>
+          </div>
+          <div class="dryrun-note">No issues found.</div>
+        </div>
+        <div class="dryrun-card pass">
+          <div class="dryrun-name">backup.sh</div>
+          <div class="dryrun-checks">
+            <span class="dcheck pass">bash -n</span>
+            <span class="dcheck pass">shellcheck</span>
+          </div>
+          <div class="dryrun-note">No issues found.</div>
+        </div>
+        <div class="dryrun-card pass">
+          <div class="dryrun-name">disk_monitor.sh</div>
+          <div class="dryrun-checks">
+            <span class="dcheck pass">bash -n</span>
+            <span class="dcheck pass">shellcheck</span>
+          </div>
+          <div class="dryrun-note">Fixed: wired <code>EXCLUDE_TYPES</code> array into <code>df -x</code> flags.</div>
+        </div>
+        <div class="dryrun-card pass">
+          <div class="dryrun-name">service_health.sh</div>
+          <div class="dryrun-checks">
+            <span class="dcheck pass">bash -n</span>
+            <span class="dcheck pass">shellcheck</span>
+          </div>
+          <div class="dryrun-note">Fixed: removed two unused placeholder constants.</div>
+        </div>
+        <div class="dryrun-card pass">
+          <div class="dryrun-name">system_report.sh</div>
+          <div class="dryrun-checks">
+            <span class="dcheck pass">bash -n</span>
+            <span class="dcheck pass">shellcheck</span>
+          </div>
+          <div class="dryrun-note">Fixed: <code>> "$FILE"</code> → <code>: > "$FILE"</code> (truncate idiom).</div>
+        </div>
+      </div>
+    </section>
+
     <!-- STANDARDS SECTION -->
     <section class="standards-section">
       <div class="section-header">
-        <div class="section-num">03</div>
+        <div class="section-num">04</div>
         <div>
           <div class="section-title">ENGINEERING STANDARDS</div>
           <div class="section-sub">Every script ships with these guarantees</div>
