@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Production-grade Bash automation scripts for Linux sysadmin — user provisioning, backups, disk monitoring, service health watchdog, and daily system reporting on RHEL 9." />
     <meta name="theme-color" content="#020202" />
-    <meta property="og:title" content="Bash Automation Toolkit" />
-    <meta property="og:description" content="5 production-grade Bash scripts for RHEL 9 sysadmin automation." />
+    <meta property="og:title" content="Bash Automation Toolkit — RHEL 9 Sysadmin Scripts" />
+    <meta property="og:description" content="5 hardened Bash scripts with strict error handling, structured logging, and automated recovery — built for Linux operations teams." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://samiulAsumel.github.io/bash-automation-toolkit" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bash Automation Toolkit" />
+    <meta name="twitter:description" content="5 production-grade Bash scripts for RHEL 9 sysadmin automation." />
     <title>Bash Automation Toolkit</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,10 +22,17 @@
   <body>
 
     <!-- HEADER -->
-    <header>
+    <header id="site-header">
       <div class="logo">
         BASH<span class="logo-sep"> / </span><span class="logo-sub">AUTOMATION TOOLKIT</span>
       </div>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a class="nav-link" href="#install">Install</a>
+        <a class="nav-link" href="#scripts">Scripts</a>
+        <a class="nav-link" href="#docs">Reference</a>
+        <a class="nav-link" href="#cron">Cron</a>
+        <a class="nav-link" href="#playground">Playground</a>
+      </nav>
       <div class="header-right">
         <a class="gh-btn" href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener" aria-label="View on GitHub">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -88,10 +99,93 @@
       </div>
     </section>
 
-    <!-- SCRIPTS GRID -->
+    <!-- 01: QUICK INSTALL -->
+    <section class="install-section" id="install">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">01</div>
+          <div>
+            <div class="section-title">QUICK INSTALL</div>
+            <div class="section-sub">Deploy to RHEL 9 in under 60 seconds</div>
+          </div>
+        </div>
+        <div class="install-grid">
+
+          <div class="install-step">
+            <div class="step-num">01</div>
+            <div class="step-title">Clone the Repository</div>
+            <p class="step-desc">Pull the toolkit from GitHub into a system-wide location accessible by root.</p>
+            <div class="step-code-wrap">
+              <pre class="step-code" id="ic1">git clone https://github.com/samiulAsumel/bash-automation-toolkit.git \
+  /opt/bash-automation-toolkit</pre>
+              <button class="step-copy-btn" data-target="ic1" aria-label="Copy command">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="install-step">
+            <div class="step-num">02</div>
+            <div class="step-title">Set Execute Permissions</div>
+            <p class="step-desc">Grant execute bits to all scripts. Root ownership ensures no unprivileged modification.</p>
+            <div class="step-code-wrap">
+              <pre class="step-code" id="ic2">cd /opt/bash-automation-toolkit
+chmod +x scripts/*.sh
+chown -R root:root scripts/</pre>
+              <button class="step-copy-btn" data-target="ic2" aria-label="Copy command">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="install-step">
+            <div class="step-num">03</div>
+            <div class="step-title">Verify with ShellCheck</div>
+            <p class="step-desc">Run static analysis on all scripts. All 5 pass with zero warnings on ShellCheck 0.9.0.</p>
+            <div class="step-code-wrap">
+              <pre class="step-code" id="ic3">shellcheck scripts/*.sh
+# All 5 scripts: No issues found.</pre>
+              <button class="step-copy-btn" data-target="ic3" aria-label="Copy command">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="install-step">
+            <div class="step-num">04</div>
+            <div class="step-title">Deploy the Cron Schedule</div>
+            <p class="step-desc">Install the full automation schedule. All scripts run as root via root's crontab.</p>
+            <div class="step-code-wrap">
+              <pre class="step-code" id="ic4">sudo crontab -e
+# Paste the full schedule from section 04 below</pre>
+              <button class="step-copy-btn" data-target="ic4" aria-label="Copy command">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Requirements strip -->
+        <div class="install-reqs">
+          <span class="req-label">Requirements</span>
+          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> RHEL / CentOS / Rocky 9</span>
+          <span class="req-div">·</span>
+          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Bash 5.0+</span>
+          <span class="req-div">·</span>
+          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Root access</span>
+          <span class="req-div">·</span>
+          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> systemd</span>
+          <span class="req-div">·</span>
+          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> bc, tar, find, awk (coreutils)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02: THE SCRIPTS -->
     <section class="scripts" id="scripts">
       <div class="section-header">
-        <div class="section-num">01</div>
+        <div class="section-num">02</div>
         <div>
           <div class="section-title">THE SCRIPTS</div>
           <div class="section-sub">Click any terminal to replay the demo</div>
@@ -150,7 +244,7 @@
             <div class="card-badge">02</div>
             <div class="card-meta">
               <div class="card-name">backup.sh</div>
-              <div class="card-tag">Backup & Archive</div>
+              <div class="card-tag">Backup &amp; Archive</div>
             </div>
           </div>
           <p class="card-desc">
@@ -330,10 +424,52 @@
       </div>
     </section>
 
-    <!-- CRON REFERENCE -->
+    <!-- 03: SCRIPT REFERENCE -->
+    <section class="deep-section" id="docs">
+      <div class="deep-wrap">
+        <div class="section-header">
+          <div class="section-num">03</div>
+          <div>
+            <div class="section-title">SCRIPT REFERENCE</div>
+            <div class="section-sub">Every parameter, behavior, edge case, and exit code — documented</div>
+          </div>
+        </div>
+        <div class="deep-body">
+          <!-- Left sidebar nav -->
+          <nav class="deep-nav" aria-label="Script selector">
+            <button class="deep-nav-btn active" data-doc="user_setup">
+              <span class="deep-nav-num">01</span>
+              <span class="deep-nav-label">user_setup.sh</span>
+            </button>
+            <button class="deep-nav-btn" data-doc="backup">
+              <span class="deep-nav-num">02</span>
+              <span class="deep-nav-label">backup.sh</span>
+            </button>
+            <button class="deep-nav-btn" data-doc="disk_monitor">
+              <span class="deep-nav-num">03</span>
+              <span class="deep-nav-label">disk_monitor.sh</span>
+            </button>
+            <button class="deep-nav-btn" data-doc="service_health">
+              <span class="deep-nav-num">04</span>
+              <span class="deep-nav-label">service_health.sh</span>
+            </button>
+            <button class="deep-nav-btn" data-doc="system_report">
+              <span class="deep-nav-num">05</span>
+              <span class="deep-nav-label">system_report.sh</span>
+            </button>
+          </nav>
+          <!-- Detail panel -->
+          <div class="deep-panel" id="deepPanel">
+            <!-- Rendered by main.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: CRON REFERENCE -->
     <section class="cron-section" id="cron">
       <div class="section-header">
-        <div class="section-num">02</div>
+        <div class="section-num">04</div>
         <div>
           <div class="section-title">CRON REFERENCE</div>
           <div class="section-sub">Full schedule — paste into <code>sudo crontab -e</code></div>
@@ -359,10 +495,10 @@
       </div>
     </section>
 
-    <!-- DRY RUN RESULTS -->
+    <!-- 05: DRY RUN RESULTS -->
     <section class="dryrun-section">
       <div class="section-header">
-        <div class="section-num">03</div>
+        <div class="section-num">05</div>
         <div>
           <div class="section-title">DRY RUN RESULTS</div>
           <div class="section-sub">bash -n + ShellCheck 0.9.0 · run 2026-05-16</div>
@@ -411,15 +547,15 @@
             <span class="dcheck pass">bash -n</span>
             <span class="dcheck pass">shellcheck</span>
           </div>
-          <div class="dryrun-note">Fixed: <code>> "$FILE"</code> → <code>: > "$FILE"</code> (truncate idiom).</div>
+          <div class="dryrun-note">Fixed: <code>&gt; "$FILE"</code> → <code>: &gt; "$FILE"</code> (truncate idiom).</div>
         </div>
       </div>
     </section>
 
-    <!-- STANDARDS SECTION -->
+    <!-- 06: ENGINEERING STANDARDS -->
     <section class="standards-section">
       <div class="section-header">
-        <div class="section-num">04</div>
+        <div class="section-num">06</div>
         <div>
           <div class="section-title">ENGINEERING STANDARDS</div>
           <div class="section-sub">Every script ships with these guarantees</div>
@@ -431,51 +567,51 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div class="std-title">Strict Mode</div>
-          <div class="std-body"><code>set -euo pipefail</code> + <code>trap ERR</code> with line numbers on every failure.</div>
+          <div class="std-body"><code>set -euo pipefail</code> + <code>trap ERR</code> with line numbers on every failure. No silent errors, ever.</div>
         </div>
         <div class="std-card">
           <div class="std-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
           <div class="std-title">Structured Logging</div>
-          <div class="std-body">Every event logged with ISO timestamp and <code>[INFO|WARN|ERROR|CRITICAL]</code> level.</div>
+          <div class="std-body">Every event logged with ISO timestamp and <code>[INFO|WARN|ERROR|CRITICAL]</code> severity. Machine-parseable format.</div>
         </div>
         <div class="std-card">
           <div class="std-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div class="std-title">Auto-Retention</div>
-          <div class="std-body">Backups pruned after 7 days. Reports pruned after 30 days. No manual cleanup needed.</div>
+          <div class="std-body">Backups pruned after 7 days. Reports pruned after 30 days. <code>find -mtime +N -delete</code> on every run.</div>
         </div>
         <div class="std-card">
           <div class="std-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
           <div class="std-title">Exit Codes</div>
-          <div class="std-body">Meaningful exit codes on all scripts — integrates with Nagios, Zabbix, or any monitoring tool.</div>
+          <div class="std-body">Meaningful exit codes on all scripts — 0 (success), 1 (warn/error), 2 (critical). Nagios/Zabbix compatible.</div>
         </div>
         <div class="std-card">
           <div class="std-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="std-title">Root Safety</div>
-          <div class="std-body">Root check at entry. Input validated before any destructive operation. Reserved accounts blocked.</div>
+          <div class="std-body">Root check at entry via <code>$EUID</code>. Input validated before any destructive operation. 13 reserved system accounts blocked.</div>
         </div>
         <div class="std-card">
           <div class="std-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <div class="std-title">No Embedded Secrets</div>
-          <div class="std-body">Passwords are never stored, echoed, or logged. Interactive prompts only. Sudoers validated by <code>visudo</code>.</div>
+          <div class="std-body">Passwords are never stored, echoed, or logged. Interactive prompts only. Sudoers validated by <code>visudo -cf</code>.</div>
         </div>
       </div>
     </section>
 
-    <!-- INTERACTIVE PLAYGROUND -->
+    <!-- 07: INTERACTIVE PLAYGROUND -->
     <section class="playground" id="playground">
       <div class="pg-wrap">
         <div class="section-header">
-          <div class="section-num">05</div>
+          <div class="section-num">07</div>
           <div>
             <div class="section-title">INTERACTIVE PLAYGROUND</div>
             <div class="section-sub">Simulated execution — 100% frontend · no server · no root needed</div>
@@ -486,23 +622,19 @@
           </div>
         </div>
 
-        <!-- Script selector tabs -->
         <div class="pg-tabs" role="tablist" aria-label="Script selector">
-          <button class="pg-tab active" data-script="user_setup"    role="tab" aria-selected="true">user_setup.sh</button>
-          <button class="pg-tab"        data-script="backup"        role="tab" aria-selected="false">backup.sh</button>
-          <button class="pg-tab"        data-script="disk_monitor"  role="tab" aria-selected="false">disk_monitor.sh</button>
-          <button class="pg-tab"        data-script="service_health"role="tab" aria-selected="false">service_health.sh</button>
-          <button class="pg-tab"        data-script="system_report" role="tab" aria-selected="false">system_report.sh</button>
+          <button class="pg-tab active" data-script="user_setup"     role="tab" aria-selected="true">user_setup.sh</button>
+          <button class="pg-tab"        data-script="backup"         role="tab" aria-selected="false">backup.sh</button>
+          <button class="pg-tab"        data-script="disk_monitor"   role="tab" aria-selected="false">disk_monitor.sh</button>
+          <button class="pg-tab"        data-script="service_health" role="tab" aria-selected="false">service_health.sh</button>
+          <button class="pg-tab"        data-script="system_report"  role="tab" aria-selected="false">system_report.sh</button>
         </div>
 
         <div class="pg-body">
-          <!-- Left: params -->
           <div class="pg-left">
             <div class="pg-panel-title">Parameters</div>
             <div id="pgParams"></div>
           </div>
-
-          <!-- Right: terminal -->
           <div class="pg-right">
             <div class="term-wrap pg-term-wrap">
               <div class="term-bar">
@@ -514,8 +646,6 @@
               </div>
               <div class="term-body pg-term-body" id="pgTermBody"></div>
             </div>
-
-            <!-- Action buttons -->
             <div class="pg-actions">
               <button class="pg-run-btn"   id="pgRunBtn">▶  Run Script</button>
               <button class="pg-clear-btn" id="pgClearBtn">Clear</button>
@@ -528,15 +658,42 @@
 
     <!-- FOOTER -->
     <footer>
-      <div class="footer-logo">BASH / AUTOMATION TOOLKIT</div>
-      <div class="footer-links">
-        <a href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">GitHub Repo</a>
-        <span class="fdiv">·</span>
-        <a href="https://github.com/samiulAsumel/bash-automation-toolkit/tree/main/scripts" target="_blank" rel="noopener">Browse Scripts</a>
-        <span class="fdiv">·</span>
-        <a href="https://github.com/samiulAsumel" target="_blank" rel="noopener">samiulAsumel</a>
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-logo">BASH / AUTOMATION TOOLKIT</div>
+          <p class="footer-desc">Production-grade sysadmin automation scripts for RHEL 9. Built by samiulAsumel as part of a Linux Job Ready portfolio.</p>
+          <div class="footer-tech">
+            <span class="ftag">Bash 5</span>
+            <span class="ftag">RHEL 9</span>
+            <span class="ftag">systemd</span>
+            <span class="ftag">ShellCheck</span>
+            <span class="ftag">cron</span>
+          </div>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-col-title">Repository</div>
+          <a href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">GitHub Repo</a>
+          <a href="https://github.com/samiulAsumel/bash-automation-toolkit/tree/main/scripts" target="_blank" rel="noopener">Browse Scripts</a>
+          <a href="https://github.com/samiulAsumel/bash-automation-toolkit/issues" target="_blank" rel="noopener">Issues</a>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-col-title">Navigation</div>
+          <a href="#install">Quick Install</a>
+          <a href="#scripts">The Scripts</a>
+          <a href="#docs">Reference</a>
+          <a href="#cron">Cron Schedule</a>
+          <a href="#playground">Playground</a>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-col-title">Author</div>
+          <a href="https://github.com/samiulAsumel" target="_blank" rel="noopener">@samiulAsumel</a>
+          <a href="https://github.com/samiulAsumel" target="_blank" rel="noopener">GitHub Profile</a>
+        </div>
       </div>
-      <p class="footer-copy">&copy; <span id="year"></span> samiulAsumel. All rights reserved.</p>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; <span id="year"></span> samiulAsumel. All rights reserved.</p>
+        <p class="footer-copy">Open source — MIT License</p>
+      </div>
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
