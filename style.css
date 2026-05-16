@@ -107,7 +107,6 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   padding: 80px 32px 96px;
-  min-height: calc(100vh - 52px);
 }
 
 .hero-eyebrow {
@@ -194,6 +193,7 @@ header {
 .btn-ghost {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   padding: 10px 22px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -896,14 +896,20 @@ header {
 }
 
 /* ── Scroll Reveal ───────────────────────────────────────────── */
+/* Cards are visible by default (no JS = no broken layout).
+   JS adds .pre-reveal immediately, then IntersectionObserver removes it. */
 .script-card, .std-card {
-  opacity: 0;
-  transform: translateY(16px);
   transition: opacity .45s ease, transform .45s ease, border-color .25s, box-shadow .25s;
 }
-.script-card.revealed, .std-card.revealed {
-  opacity: 1;
-  transform: translateY(0);
+.script-card.pre-reveal, .std-card.pre-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+}
+@media print {
+  .script-card.pre-reveal, .std-card.pre-reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */

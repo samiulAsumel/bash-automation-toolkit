@@ -128,18 +128,23 @@ document.querySelectorAll('.script-card .term-body[data-lines]').forEach(el => {
   if (replayBtn) replayBtn.addEventListener('click', () => start(0));
 });
 
-// ── Scroll reveal ─────────────────────────────────────────────
+// ── Scroll reveal (JS-driven so cards are never invisible without JS) ─
+const revealTargets = document.querySelectorAll('.script-card, .std-card');
+
+// Mark hidden only after JS runs — without JS, cards stay visible
+revealTargets.forEach(el => el.classList.add('pre-reveal'));
+
 const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
       const delay = (parseInt(entry.target.dataset.index || '0', 10) % 4) * 60;
-      setTimeout(() => entry.target.classList.add('revealed'), delay);
+      setTimeout(() => entry.target.classList.remove('pre-reveal'), delay);
       revealObs.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.script-card, .std-card').forEach(el => revealObs.observe(el));
+revealTargets.forEach(el => revealObs.observe(el));
 
 // ── Copy command buttons ──────────────────────────────────────
 const toast = document.getElementById('toast');
