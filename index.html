@@ -71,7 +71,10 @@
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a class="btn-ghost" href="#scripts">Explore Scripts</a>
+          <a class="btn-ghost" href="#playground">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Try it Live
+          </a>
         </div>
       </div>
       <div class="hero-terminal" aria-hidden="true">
@@ -468,6 +471,61 @@
       </div>
     </section>
 
+    <!-- INTERACTIVE PLAYGROUND -->
+    <section class="playground" id="playground">
+      <div class="pg-wrap">
+        <div class="section-header">
+          <div class="section-num">05</div>
+          <div>
+            <div class="section-title">INTERACTIVE PLAYGROUND</div>
+            <div class="section-sub">Simulated execution — 100% frontend · no server · no root needed</div>
+          </div>
+          <div class="pg-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Frontend Only
+          </div>
+        </div>
+
+        <!-- Script selector tabs -->
+        <div class="pg-tabs" role="tablist" aria-label="Script selector">
+          <button class="pg-tab active" data-script="user_setup"    role="tab" aria-selected="true">user_setup.sh</button>
+          <button class="pg-tab"        data-script="backup"        role="tab" aria-selected="false">backup.sh</button>
+          <button class="pg-tab"        data-script="disk_monitor"  role="tab" aria-selected="false">disk_monitor.sh</button>
+          <button class="pg-tab"        data-script="service_health"role="tab" aria-selected="false">service_health.sh</button>
+          <button class="pg-tab"        data-script="system_report" role="tab" aria-selected="false">system_report.sh</button>
+        </div>
+
+        <div class="pg-body">
+          <!-- Left: params -->
+          <div class="pg-left">
+            <div class="pg-panel-title">Parameters</div>
+            <div id="pgParams"></div>
+          </div>
+
+          <!-- Right: terminal -->
+          <div class="pg-right">
+            <div class="term-wrap pg-term-wrap">
+              <div class="term-bar">
+                <span class="tdot tdot-r"></span>
+                <span class="tdot tdot-y"></span>
+                <span class="tdot tdot-g"></span>
+                <span class="term-title" id="pgTermTitle">user_setup.sh</span>
+                <span class="pg-status" id="pgStatus"></span>
+              </div>
+              <div class="term-body pg-term-body" id="pgTermBody"></div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="pg-actions">
+              <button class="pg-run-btn"   id="pgRunBtn">▶  Run Script</button>
+              <button class="pg-clear-btn" id="pgClearBtn">Clear</button>
+              <button class="pg-copy-btn"  id="pgCopyBtn" disabled>Copy Output</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
       <div class="footer-logo">BASH / AUTOMATION TOOLKIT</div>
@@ -490,5 +548,6 @@
     </noscript>
 
     <script src="main.js"></script>
+    <script src="playground.js"></script>
   </body>
 </html>
