@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Production-grade Bash automation scripts for Linux sysadmin — user provisioning, backups, disk monitoring, service health watchdog, and daily system reporting on RHEL 9." />
+    <meta name="theme-color" content="#020202" />
+    <meta property="og:title" content="Bash Automation Toolkit" />
+    <meta property="og:description" content="5 production-grade Bash scripts for RHEL 9 sysadmin automation." />
+    <meta property="og:type" content="website" />
+    <title>Bash Automation Toolkit</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        BASH<span class="logo-sep"> / </span><span class="logo-sub">AUTOMATION TOOLKIT</span>
+      </div>
+      <div class="header-right">
+        <a class="gh-btn" href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener" aria-label="View on GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span> RHEL 9 · Bash 5 · Production-Ready
+        </div>
+        <h1 class="hero-title">BASH<br/>AUTOMATION<br/>TOOLKIT</h1>
+        <p class="hero-sub">
+          5 hardened sysadmin scripts with strict error handling, structured logging,
+          and automated recovery — built for Linux operations teams.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">5</span>
+            <span class="stat-lbl">Scripts</span>
+          </div>
+          <div class="stat-div"></div>
+          <div class="stat">
+            <span class="stat-num">RHEL 9</span>
+            <span class="stat-lbl">Platform</span>
+          </div>
+          <div class="stat-div"></div>
+          <div class="stat">
+            <span class="stat-num">0</span>
+            <span class="stat-lbl">Dependencies</span>
+          </div>
+          <div class="stat-div"></div>
+          <div class="stat">
+            <span class="stat-num">set -euo</span>
+            <span class="stat-lbl">Strict Mode</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn-ghost" href="#scripts">Explore Scripts</a>
+        </div>
+      </div>
+      <div class="hero-terminal" aria-hidden="true">
+        <div class="term-bar">
+          <span class="tdot tdot-r"></span>
+          <span class="tdot tdot-y"></span>
+          <span class="tdot tdot-g"></span>
+          <span class="term-title">root@rhel9 ~ $</span>
+        </div>
+        <div class="term-body" id="heroTerm"></div>
+      </div>
+    </section>
+
+    <!-- SCRIPTS GRID -->
+    <section class="scripts" id="scripts">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <div>
+          <div class="section-title">THE SCRIPTS</div>
+          <div class="section-sub">Click any terminal to replay the demo</div>
+        </div>
+      </div>
+
+      <div class="script-grid">
+
+        <!-- user_setup.sh -->
+        <div class="script-card" data-index="0">
+          <div class="card-head">
+            <div class="card-badge">01</div>
+            <div class="card-meta">
+              <div class="card-name">user_setup.sh</div>
+              <div class="card-tag">User Provisioning</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Creates a Linux user with a primary group, enforced password change on first login,
+            and per-user sudoers file validated by <code>visudo</code> before activation.
+          </p>
+          <div class="term-wrap">
+            <div class="term-bar">
+              <span class="tdot tdot-r"></span>
+              <span class="tdot tdot-y"></span>
+              <span class="tdot tdot-g"></span>
+              <span class="term-title">user_setup.sh</span>
+              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+            </div>
+            <div class="term-body" data-lines='[
+              {"t":"cmd","v":"sudo ./scripts/user_setup.sh devops portteam"},
+              {"t":"info","v":"2026-05-16 14:23:01 [INFO] Group portteam created."},
+              {"t":"info","v":"2026-05-16 14:23:01 [INFO] User devops created with home directory."},
+              {"t":"plain","v":"Set password for devops:"},
+              {"t":"plain","v":"passwd: all authentication tokens updated successfully."},
+              {"t":"info","v":"2026-05-16 14:23:09 [INFO] Password set; first-login change enforced."},
+              {"t":"info","v":"2026-05-16 14:23:09 [INFO] Sudo access granted via /etc/sudoers.d/devops"},
+              {"t":"ok","v":"2026-05-16 14:23:09 [INFO] === Provisioning complete for devops ==="},
+              {"t":"plain","v":""},
+              {"t":"plain","v":"uid=1001(devops) gid=1001(portteam) groups=1001(portteam)"}
+            ]'></div>
+          </div>
+          <div class="card-usage">
+            <span class="usage-label">Usage</span>
+            <code class="usage-cmd" data-copy="sudo ./scripts/user_setup.sh &lt;username&gt; &lt;groupname&gt;">sudo ./scripts/user_setup.sh &lt;username&gt; &lt;groupname&gt;</code>
+            <button class="copy-btn" aria-label="Copy command" title="Copy">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="card-log">Log: <code>/var/log/user_setup.log</code></div>
+        </div>
+
+        <!-- backup.sh -->
+        <div class="script-card" data-index="1">
+          <div class="card-head">
+            <div class="card-badge">02</div>
+            <div class="card-meta">
+              <div class="card-name">backup.sh</div>
+              <div class="card-tag">Backup & Archive</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Archives <code>/home</code> and <code>/etc</code> into date-stamped <code>.tar.gz</code> files,
+            verifies integrity after each archive, and auto-prunes backups older than 7 days.
+          </p>
+          <div class="term-wrap">
+            <div class="term-bar">
+              <span class="tdot tdot-r"></span>
+              <span class="tdot tdot-y"></span>
+              <span class="tdot tdot-g"></span>
+              <span class="term-title">backup.sh</span>
+              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+            </div>
+            <div class="term-body" data-lines='[
+              {"t":"cmd","v":"sudo ./scripts/backup.sh"},
+              {"t":"info","v":"2026-05-16 02:00:01 [INFO] Backing up /home → /backup/home_2026-05-16.tar.gz ..."},
+              {"t":"ok","v":"2026-05-16 02:00:04 [INFO] SUCCESS — /home backed up | Size: 142.37 MB"},
+              {"t":"info","v":"2026-05-16 02:00:04 [INFO] Backing up /etc → /backup/etc_2026-05-16.tar.gz ..."},
+              {"t":"ok","v":"2026-05-16 02:00:05 [INFO] SUCCESS — /etc backed up | Size: 8.21 MB"},
+              {"t":"info","v":"2026-05-16 02:00:05 [INFO] Removing backups older than 7 days ..."},
+              {"t":"ok","v":"2026-05-16 02:00:05 [INFO] === Backup completed successfully ==="}
+            ]'></div>
+          </div>
+          <div class="card-usage">
+            <span class="usage-label">Usage</span>
+            <code class="usage-cmd" data-copy="sudo ./scripts/backup.sh">sudo ./scripts/backup.sh</code>
+            <button class="copy-btn" aria-label="Copy command" title="Copy">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="card-log">Log: <code>/var/log/backup.log</code></div>
+        </div>
+
+        <!-- disk_monitor.sh -->
+        <div class="script-card" data-index="2">
+          <div class="card-head">
+            <div class="card-badge">03</div>
+            <div class="card-meta">
+              <div class="card-name">disk_monitor.sh</div>
+              <div class="card-tag">Disk Alerting</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Scans every real mounted partition. Logs <code>WARN</code> at 80% and
+            <code>CRITICAL</code> at 95% usage. Exit codes <code>0/1/2</code>
+            integrate cleanly with monitoring pipelines.
+          </p>
+          <div class="term-wrap">
+            <div class="term-bar">
+              <span class="tdot tdot-r"></span>
+              <span class="tdot tdot-y"></span>
+              <span class="tdot tdot-g"></span>
+              <span class="term-title">disk_monitor.sh</span>
+              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+            </div>
+            <div class="term-body" data-lines='[
+              {"t":"cmd","v":"sudo ./scripts/disk_monitor.sh"},
+              {"t":"info","v":"[INFO]  === Disk check started (warn:80% crit:95%) ==="},
+              {"t":"ok","v":"[INFO]  OK:       / (/dev/sda1) — 43% | 50G total"},
+              {"t":"warn","v":"[WARN]  ALERT:    /var (/dev/sda3) — 83% | 20G total"},
+              {"t":"ok","v":"[INFO]  OK:       /boot (/dev/sda2) — 31% | 1.0G total"},
+              {"t":"warn","v":"[WARN]  === 1 partition(s) above 80% threshold ==="}
+            ]'></div>
+          </div>
+          <div class="card-usage">
+            <span class="usage-label">Cron (every 30 min)</span>
+            <code class="usage-cmd" data-copy="*/30 * * * * /opt/bash-automation-toolkit/scripts/disk_monitor.sh">*/30 * * * * /opt/bash-automation-toolkit/scripts/disk_monitor.sh</code>
+            <button class="copy-btn" aria-label="Copy command" title="Copy">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="card-log">Log: <code>/var/log/disk_alert.log</code></div>
+        </div>
+
+        <!-- service_health.sh -->
+        <div class="script-card" data-index="3">
+          <div class="card-head">
+            <div class="card-badge">04</div>
+            <div class="card-meta">
+              <div class="card-name">service_health.sh</div>
+              <div class="card-tag">Service Watchdog</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Polls <code>sshd</code>, <code>nginx</code>, and <code>firewalld</code> via
+            <code>systemctl</code>. On failure: captures diagnostic output, restarts the
+            service, re-enables it if disabled, and confirms recovery.
+          </p>
+          <div class="term-wrap">
+            <div class="term-bar">
+              <span class="tdot tdot-r"></span>
+              <span class="tdot tdot-y"></span>
+              <span class="tdot tdot-g"></span>
+              <span class="term-title">service_health.sh</span>
+              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+            </div>
+            <div class="term-body" data-lines='[
+              {"t":"cmd","v":"sudo ./scripts/service_health.sh"},
+              {"t":"info","v":"[INFO]  === Health check started (3 services) ==="},
+              {"t":"ok","v":"[INFO]  sshd — RUNNING"},
+              {"t":"warn","v":"[WARN]  nginx — DOWN. Attempting restart..."},
+              {"t":"info","v":"[INFO]  nginx — RESTARTED successfully."},
+              {"t":"ok","v":"[INFO]  firewalld — RUNNING"},
+              {"t":"ok","v":"[INFO]  === Complete — Failures: 1 | Restarted: 1 ==="}
+            ]'></div>
+          </div>
+          <div class="card-usage">
+            <span class="usage-label">Cron (every 5 min)</span>
+            <code class="usage-cmd" data-copy="*/5 * * * * /opt/bash-automation-toolkit/scripts/service_health.sh">*/5 * * * * /opt/bash-automation-toolkit/scripts/service_health.sh</code>
+            <button class="copy-btn" aria-label="Copy command" title="Copy">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="card-log">Log: <code>/var/log/service_health.log</code></div>
+        </div>
+
+        <!-- system_report.sh -->
+        <div class="script-card card-wide" data-index="4">
+          <div class="card-head">
+            <div class="card-badge">05</div>
+            <div class="card-meta">
+              <div class="card-name">system_report.sh</div>
+              <div class="card-tag">Daily System Report</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Generates a full-page system snapshot: hostname, OS, kernel, uptime, load averages,
+            CPU usage (live 1-second sample), memory, disk, network interfaces, logged-in users,
+            last 5 failed login attempts, critical service status, and recent journal errors.
+            Saves to <code>/root/reports/report_YYYY-MM-DD.txt</code>.
+          </p>
+          <div class="term-wrap">
+            <div class="term-bar">
+              <span class="tdot tdot-r"></span>
+              <span class="tdot tdot-y"></span>
+              <span class="tdot tdot-g"></span>
+              <span class="term-title">system_report.sh</span>
+              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+            </div>
+            <div class="term-body" data-lines='[
+              {"t":"cmd","v":"sudo ./scripts/system_report.sh"},
+              {"t":"border","v":"╔══════════════════════════════════════════╗"},
+              {"t":"border","v":"║   DAILY SYSTEM REPORT — 2026-05-16      ║"},
+              {"t":"border","v":"╚══════════════════════════════════════════╝"},
+              {"t":"plain","v":""},
+              {"t":"label","v":"SYSTEM IDENTITY"},
+              {"t":"plain","v":"Hostname    : rhel9-server.lab.local"},
+              {"t":"plain","v":"OS          : Red Hat Enterprise Linux 9.4 (Plow)"},
+              {"t":"plain","v":"Kernel      : 5.14.0-427.el9.x86_64"},
+              {"t":"plain","v":""},
+              {"t":"label","v":"UPTIME & LOAD"},
+              {"t":"plain","v":"up 3 days, 14 hours, 22 minutes"},
+              {"t":"plain","v":"Load: 0.12 / 0.08 / 0.05  (1m / 5m / 15m)"},
+              {"t":"plain","v":""},
+              {"t":"label","v":"MEMORY USAGE"},
+              {"t":"plain","v":"Total: 7.6G  Used: 1.2G  Free: 4.9G  (16%)"},
+              {"t":"plain","v":""},
+              {"t":"label","v":"CRITICAL SERVICES"},
+              {"t":"ok","v":"sshd        : active"},
+              {"t":"ok","v":"nginx       : active"},
+              {"t":"ok","v":"firewalld   : active"},
+              {"t":"ok","v":""},
+              {"t":"ok","v":"Report saved: /root/reports/report_2026-05-16.txt"}
+            ]'></div>
+          </div>
+          <div class="card-usage">
+            <span class="usage-label">Cron (daily at 6 AM)</span>
+            <code class="usage-cmd" data-copy="0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh">0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh</code>
+            <button class="copy-btn" aria-label="Copy command" title="Copy">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="card-log">Output: <code>/root/reports/report_YYYY-MM-DD.txt</code></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CRON REFERENCE -->
+    <section class="cron-section" id="cron">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <div>
+          <div class="section-title">CRON REFERENCE</div>
+          <div class="section-sub">Full schedule — paste into <code>sudo crontab -e</code></div>
+        </div>
+        <button class="copy-all-btn" id="copyAllCron" aria-label="Copy full crontab">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy All
+        </button>
+      </div>
+      <div class="cron-block">
+        <pre id="cronContent"># Bash Automation Toolkit — full crontab
+# Daily backup at 2:00 AM
+0 2 * * * /opt/bash-automation-toolkit/scripts/backup.sh
+
+# Disk check every 30 minutes
+*/30 * * * * /opt/bash-automation-toolkit/scripts/disk_monitor.sh
+
+# Service health check every 5 minutes
+*/5 * * * * /opt/bash-automation-toolkit/scripts/service_health.sh
+
+# Daily system report at 6:00 AM
+0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh</pre>
+      </div>
+    </section>
+
+    <!-- STANDARDS SECTION -->
+    <section class="standards-section">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <div>
+          <div class="section-title">ENGINEERING STANDARDS</div>
+          <div class="section-sub">Every script ships with these guarantees</div>
+        </div>
+      </div>
+      <div class="standards-grid">
+        <div class="std-card">
+          <div class="std-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="std-title">Strict Mode</div>
+          <div class="std-body"><code>set -euo pipefail</code> + <code>trap ERR</code> with line numbers on every failure.</div>
+        </div>
+        <div class="std-card">
+          <div class="std-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="std-title">Structured Logging</div>
+          <div class="std-body">Every event logged with ISO timestamp and <code>[INFO|WARN|ERROR|CRITICAL]</code> level.</div>
+        </div>
+        <div class="std-card">
+          <div class="std-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="std-title">Auto-Retention</div>
+          <div class="std-body">Backups pruned after 7 days. Reports pruned after 30 days. No manual cleanup needed.</div>
+        </div>
+        <div class="std-card">
+          <div class="std-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="std-title">Exit Codes</div>
+          <div class="std-body">Meaningful exit codes on all scripts — integrates with Nagios, Zabbix, or any monitoring tool.</div>
+        </div>
+        <div class="std-card">
+          <div class="std-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="std-title">Root Safety</div>
+          <div class="std-body">Root check at entry. Input validated before any destructive operation. Reserved accounts blocked.</div>
+        </div>
+        <div class="std-card">
+          <div class="std-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="std-title">No Embedded Secrets</div>
+          <div class="std-body">Passwords are never stored, echoed, or logged. Interactive prompts only. Sudoers validated by <code>visudo</code>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">BASH / AUTOMATION TOOLKIT</div>
+      <div class="footer-links">
+        <a href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">GitHub Repo</a>
+        <span class="fdiv">·</span>
+        <a href="https://github.com/samiulAsumel/bash-automation-toolkit/tree/main/scripts" target="_blank" rel="noopener">Browse Scripts</a>
+        <span class="fdiv">·</span>
+        <a href="https://github.com/samiulAsumel" target="_blank" rel="noopener">samiulAsumel</a>
+      </div>
+      <p class="footer-copy">&copy; <span id="year"></span> samiulAsumel. All rights reserved.</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
+
+    <noscript>
+      <div style="position:fixed;inset:0;z-index:9999;background:#020202;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:15px;color:#7e96b0;text-align:center;padding:32px;line-height:2">
+        <div><strong style="color:#22c55e;display:block;margin-bottom:8px;font-size:18px">JavaScript Required</strong>Bash Automation Toolkit requires JavaScript for terminal animations.</div>
+      </div>
+    </noscript>
+
+    <script src="main.js"></script>
+  </body>
+</html>
