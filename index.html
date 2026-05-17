@@ -113,8 +113,10 @@
 
           <div class="install-step">
             <div class="step-num">01</div>
-            <div class="step-title">Clone the Repository</div>
-            <p class="step-desc">Pull the toolkit from GitHub into a system-wide location accessible by root.</p>
+            <div class="step-content">
+              <div class="step-title">Clone the Repository</div>
+              <p class="step-desc">Pull the toolkit from GitHub into a system-wide location accessible by root.</p>
+            </div>
             <div class="step-code-wrap">
               <pre class="step-code" id="ic1">git clone https://github.com/samiulAsumel/bash-automation-toolkit.git \
   /opt/bash-automation-toolkit</pre>
@@ -126,8 +128,10 @@
 
           <div class="install-step">
             <div class="step-num">02</div>
-            <div class="step-title">Set Execute Permissions</div>
-            <p class="step-desc">Grant execute bits to all scripts. Root ownership ensures no unprivileged modification.</p>
+            <div class="step-content">
+              <div class="step-title">Set Execute Permissions</div>
+              <p class="step-desc">Grant execute bits to all scripts. Root ownership ensures no unprivileged modification.</p>
+            </div>
             <div class="step-code-wrap">
               <pre class="step-code" id="ic2">cd /opt/bash-automation-toolkit
 chmod +x scripts/*.sh
@@ -140,8 +144,10 @@ chown -R root:root scripts/</pre>
 
           <div class="install-step">
             <div class="step-num">03</div>
-            <div class="step-title">Verify with ShellCheck</div>
-            <p class="step-desc">Run static analysis on all scripts. All 5 pass with zero warnings on ShellCheck 0.9.0.</p>
+            <div class="step-content">
+              <div class="step-title">Verify with ShellCheck</div>
+              <p class="step-desc">Run static analysis on all scripts. All 5 pass with zero warnings on ShellCheck 0.9.0.</p>
+            </div>
             <div class="step-code-wrap">
               <pre class="step-code" id="ic3">shellcheck scripts/*.sh
 # All 5 scripts: No issues found.</pre>
@@ -153,12 +159,46 @@ chown -R root:root scripts/</pre>
 
           <div class="install-step">
             <div class="step-num">04</div>
-            <div class="step-title">Deploy the Cron Schedule</div>
-            <p class="step-desc">Install the full automation schedule. All scripts run as root via root's crontab.</p>
+            <div class="step-content">
+              <div class="step-title">Deploy the Cron Schedule</div>
+              <p class="step-desc">Install the full automation schedule. All scripts run as root via root's crontab.</p>
+            </div>
             <div class="step-code-wrap">
               <pre class="step-code" id="ic4">sudo crontab -e
 # Paste the full schedule from section 04 below</pre>
               <button class="step-copy-btn" data-target="ic4" aria-label="Copy command">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="install-step">
+            <div class="step-num">05</div>
+            <div class="step-content">
+              <div class="step-title">Add to PATH (Optional)</div>
+              <p class="step-desc">Make scripts accessible from anywhere without typing the full path.</p>
+            </div>
+            <div class="step-code-wrap">
+              <pre class="step-code" id="ic5">echo 'export PATH="$PATH:/opt/bash-automation-toolkit/scripts"' \
+  >> ~/.bashrc
+source ~/.bashrc</pre>
+              <button class="step-copy-btn" data-target="ic5" aria-label="Copy command">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="install-step">
+            <div class="step-num">06</div>
+            <div class="step-content">
+              <div class="step-title">Run a Test Script</div>
+              <p class="step-desc">Verify the installation by running the health check script.</p>
+            </div>
+            <div class="step-code-wrap">
+              <pre class="step-code" id="ic6">cd /opt/bash-automation-toolkit
+sudo ./scripts/health_check.sh
+# Expected output: System health OK</pre>
+              <button class="step-copy-btn" data-target="ic6" aria-label="Copy command">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               </button>
             </div>
@@ -178,6 +218,17 @@ chown -R root:root scripts/</pre>
           <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> systemd</span>
           <span class="req-div">·</span>
           <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> bc, tar, find, awk (coreutils)</span>
+        </div>
+
+        <div class="install-cta">
+          <a class="btn-primary" href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            View on GitHub
+          </a>
+          <a class="btn-ghost" href="#scripts">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            See the Scripts
+          </a>
         </div>
       </div>
     </section>
@@ -496,7 +547,7 @@ chown -R root:root scripts/</pre>
     </section>
 
     <!-- 05: DRY RUN RESULTS -->
-    <section class="dryrun-section">
+    <section class="dryrun-section" id="dryrun">
       <div class="section-header">
         <div class="section-num">05</div>
         <div>
@@ -553,7 +604,7 @@ chown -R root:root scripts/</pre>
     </section>
 
     <!-- 06: ENGINEERING STANDARDS -->
-    <section class="standards-section">
+    <section class="standards-section" id="standards">
       <div class="section-header">
         <div class="section-num">06</div>
         <div>
