@@ -2,29 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Production-grade Bash automation scripts for Linux sysadmin — user provisioning, backups, disk monitoring, service health watchdog, and daily system reporting on RHEL 9." />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Production-grade Bash automation scripts for Linux sysadmin — user provisioning, backups, disk monitoring, service health watchdog, and daily system reporting on RHEL 9."
+    />
     <meta name="theme-color" content="#020202" />
-    <meta property="og:title" content="Bash Automation Toolkit — RHEL 9 Sysadmin Scripts" />
-    <meta property="og:description" content="5 hardened Bash scripts with strict error handling, structured logging, and automated recovery — built for Linux operations teams." />
+    <meta
+      property="og:title"
+      content="Bash Automation Toolkit — RHEL 9 Sysadmin Scripts"
+    />
+    <meta
+      property="og:description"
+      content="5 hardened Bash scripts with strict error handling, structured logging, and automated recovery — built for Linux operations teams."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://samiulAsumel.github.io/bash-automation-toolkit" />
+    <meta
+      property="og:url"
+      content="https://samiulAsumel.github.io/bash-automation-toolkit"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Bash Automation Toolkit" />
-    <meta name="twitter:description" content="5 production-grade Bash scripts for RHEL 9 sysadmin automation." />
+    <meta
+      name="twitter:description"
+      content="5 production-grade Bash scripts for RHEL 9 sysadmin automation."
+    />
     <title>Bash Automation Toolkit</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-
     <!-- HEADER -->
     <header id="site-header">
       <div class="logo">
-        BASH<span class="logo-sep"> / </span><span class="logo-sub">AUTOMATION TOOLKIT</span>
+        BASH<span class="logo-sep"> / </span
+        ><span class="logo-sub">AUTOMATION TOOLKIT</span>
       </div>
       <nav class="header-nav" aria-label="Main navigation">
         <a class="nav-link" href="#install">Install</a>
@@ -34,8 +55,24 @@
         <a class="nav-link" href="#playground">Playground</a>
       </nav>
       <div class="header-right">
-        <a class="gh-btn" href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener" aria-label="View on GitHub">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        <a
+          class="gh-btn"
+          href="https://github.com/samiulAsumel/bash-automation-toolkit"
+          target="_blank"
+          rel="noopener"
+          aria-label="View on GitHub"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+            />
+          </svg>
           GitHub
         </a>
       </div>
@@ -47,14 +84,24 @@
         <div class="hero-eyebrow">
           <span class="eyebrow-dot"></span> RHEL 9 · Bash 5 · Production-Ready
           <span class="eyebrow-verified">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
             ShellCheck Verified
           </span>
         </div>
-        <h1 class="hero-title">BASH<br/>AUTOMATION<br/>TOOLKIT</h1>
+        <h1 class="hero-title">BASH<br />AUTOMATION <br />TOOLKIT</h1>
         <p class="hero-sub">
-          5 hardened sysadmin scripts with strict error handling, structured logging,
-          and automated recovery — built for Linux operations teams.
+          5 hardened sysadmin scripts with strict error handling, structured
+          logging, and automated recovery — built for Linux operations teams.
         </p>
         <div class="hero-stats">
           <div class="stat">
@@ -78,12 +125,37 @@
           </div>
         </div>
         <div class="hero-actions">
-          <a class="btn-primary" href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">
+          <a
+            class="btn-primary"
+            href="https://github.com/samiulAsumel/bash-automation-toolkit"
+            target="_blank"
+            rel="noopener"
+          >
             View on GitHub
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </a>
           <a class="btn-ghost" href="#playground">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
             Try it Live
           </a>
         </div>
@@ -110,18 +182,38 @@
           </div>
         </div>
         <div class="install-grid">
-
           <div class="install-step">
             <div class="step-num">01</div>
             <div class="step-content">
               <div class="step-title">Clone the Repository</div>
-              <p class="step-desc">Pull the toolkit from GitHub into a system-wide location accessible by root.</p>
+              <p class="step-desc">
+                Pull the toolkit from GitHub into a system-wide location
+                accessible by root.
+              </p>
             </div>
             <div class="step-code-wrap">
-              <pre class="step-code" id="ic1">git clone https://github.com/samiulAsumel/bash-automation-toolkit.git \
-  /opt/bash-automation-toolkit</pre>
-              <button class="step-copy-btn" data-target="ic1" aria-label="Copy command">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <pre class="step-code" id="ic1">
+git clone https://github.com/samiulAsumel/bash-automation-toolkit.git \
+  /opt/bash-automation-toolkit</pre
+              >
+              <button
+                class="step-copy-btn"
+                data-target="ic1"
+                aria-label="Copy command"
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -130,14 +222,35 @@
             <div class="step-num">02</div>
             <div class="step-content">
               <div class="step-title">Set Execute Permissions</div>
-              <p class="step-desc">Grant execute bits to all scripts. Root ownership ensures no unprivileged modification.</p>
+              <p class="step-desc">
+                Grant execute bits to all scripts. Root ownership ensures no
+                unprivileged modification.
+              </p>
             </div>
             <div class="step-code-wrap">
-              <pre class="step-code" id="ic2">cd /opt/bash-automation-toolkit
+              <pre class="step-code" id="ic2">
+cd /opt/bash-automation-toolkit
 chmod +x scripts/*.sh
-chown -R root:root scripts/</pre>
-              <button class="step-copy-btn" data-target="ic2" aria-label="Copy command">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+chown -R root:root scripts/</pre
+              >
+              <button
+                class="step-copy-btn"
+                data-target="ic2"
+                aria-label="Copy command"
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -146,13 +259,34 @@ chown -R root:root scripts/</pre>
             <div class="step-num">03</div>
             <div class="step-content">
               <div class="step-title">Verify with ShellCheck</div>
-              <p class="step-desc">Run static analysis on all scripts. All 5 pass with zero warnings on ShellCheck 0.9.0.</p>
+              <p class="step-desc">
+                Run static analysis on all scripts. All 5 pass with zero
+                warnings on ShellCheck 0.9.0.
+              </p>
             </div>
             <div class="step-code-wrap">
-              <pre class="step-code" id="ic3">shellcheck scripts/*.sh
-# All 5 scripts: No issues found.</pre>
-              <button class="step-copy-btn" data-target="ic3" aria-label="Copy command">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <pre class="step-code" id="ic3">
+shellcheck scripts/*.sh
+# All 5 scripts: No issues found.</pre
+              >
+              <button
+                class="step-copy-btn"
+                data-target="ic3"
+                aria-label="Copy command"
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -161,13 +295,34 @@ chown -R root:root scripts/</pre>
             <div class="step-num">04</div>
             <div class="step-content">
               <div class="step-title">Deploy the Cron Schedule</div>
-              <p class="step-desc">Install the full automation schedule. All scripts run as root via root's crontab.</p>
+              <p class="step-desc">
+                Install the full automation schedule. All scripts run as root
+                via root's crontab.
+              </p>
             </div>
             <div class="step-code-wrap">
-              <pre class="step-code" id="ic4">sudo crontab -e
-# Paste the full schedule from section 04 below</pre>
-              <button class="step-copy-btn" data-target="ic4" aria-label="Copy command">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <pre class="step-code" id="ic4">
+sudo crontab -e
+# Paste the full schedule from section 04 below</pre
+              >
+              <button
+                class="step-copy-btn"
+                data-target="ic4"
+                aria-label="Copy command"
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -176,14 +331,35 @@ chown -R root:root scripts/</pre>
             <div class="step-num">05</div>
             <div class="step-content">
               <div class="step-title">Add to PATH (Optional)</div>
-              <p class="step-desc">Make scripts accessible from anywhere without typing the full path.</p>
+              <p class="step-desc">
+                Make scripts accessible from anywhere without typing the full
+                path.
+              </p>
             </div>
             <div class="step-code-wrap">
-              <pre class="step-code" id="ic5">echo 'export PATH="$PATH:/opt/bash-automation-toolkit/scripts"' \
+              <pre class="step-code" id="ic5">
+echo 'export PATH="$PATH:/opt/bash-automation-toolkit/scripts"' \
   >> ~/.bashrc
-source ~/.bashrc</pre>
-              <button class="step-copy-btn" data-target="ic5" aria-label="Copy command">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+source ~/.bashrc</pre
+              >
+              <button
+                class="step-copy-btn"
+                data-target="ic5"
+                aria-label="Copy command"
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -192,41 +368,143 @@ source ~/.bashrc</pre>
             <div class="step-num">06</div>
             <div class="step-content">
               <div class="step-title">Run a Test Script</div>
-              <p class="step-desc">Verify the installation by running the health check script.</p>
+              <p class="step-desc">
+                Verify the installation by running the health check script.
+              </p>
             </div>
             <div class="step-code-wrap">
-              <pre class="step-code" id="ic6">cd /opt/bash-automation-toolkit
+              <pre class="step-code" id="ic6">
+cd /opt/bash-automation-toolkit
 sudo ./scripts/service_health.sh
-# Expected: [INFO] === Health check complete — Failures: 0 ===</pre>
-              <button class="step-copy-btn" data-target="ic6" aria-label="Copy command">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+# Expected: [INFO] === Health check complete — Failures: 0 ===</pre
+              >
+              <button
+                class="step-copy-btn"
+                data-target="ic6"
+                aria-label="Copy command"
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  />
+                </svg>
               </button>
             </div>
           </div>
-
         </div>
 
         <!-- Requirements strip -->
         <div class="install-reqs">
           <span class="req-label">Requirements</span>
-          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> RHEL / CentOS / Rocky 9</span>
+          <span class="req-item"
+            ><svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            RHEL / CentOS / Rocky 9</span
+          >
           <span class="req-div">·</span>
-          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Bash 5.0+</span>
+          <span class="req-item"
+            ><svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Bash 5.0+</span
+          >
           <span class="req-div">·</span>
-          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Root access</span>
+          <span class="req-item"
+            ><svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Root access</span
+          >
           <span class="req-div">·</span>
-          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> systemd</span>
+          <span class="req-item"
+            ><svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            systemd</span
+          >
           <span class="req-div">·</span>
-          <span class="req-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> bc, tar, find, awk (coreutils)</span>
+          <span class="req-item"
+            ><svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            bc, tar, find, awk (coreutils)</span
+          >
         </div>
 
         <div class="install-cta">
-          <a class="btn-primary" href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a
+            class="btn-primary"
+            href="https://github.com/samiulAsumel/bash-automation-toolkit"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
             View on GitHub
           </a>
           <a class="btn-ghost" href="#scripts">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
             See the Scripts
           </a>
         </div>
@@ -244,7 +522,6 @@ sudo ./scripts/service_health.sh
       </div>
 
       <div class="script-grid">
-
         <!-- user_setup.sh -->
         <div class="script-card" data-index="0">
           <div class="card-head">
@@ -255,8 +532,9 @@ sudo ./scripts/service_health.sh
             </div>
           </div>
           <p class="card-desc">
-            Creates a Linux user with a primary group, enforced password change on first login,
-            and per-user sudoers file validated by <code>visudo</code> before activation.
+            Creates a Linux user with a primary group, enforced password change
+            on first login, and per-user sudoers file validated by
+            <code>visudo</code> before activation.
           </p>
           <div class="term-wrap">
             <div class="term-bar">
@@ -264,9 +542,17 @@ sudo ./scripts/service_health.sh
               <span class="tdot tdot-y"></span>
               <span class="tdot tdot-g"></span>
               <span class="term-title">user_setup.sh</span>
-              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+              <button
+                class="term-replay"
+                aria-label="Replay terminal animation"
+                title="Replay"
+              >
+                ↻
+              </button>
             </div>
-            <div class="term-body" data-lines='[
+            <div
+              class="term-body"
+              data-lines='[
               {"t":"cmd","v":"sudo ./scripts/user_setup.sh devops portteam"},
               {"t":"info","v":"2026-05-16 14:23:01 [INFO] Group portteam created."},
               {"t":"info","v":"2026-05-16 14:23:01 [INFO] User devops created with home directory."},
@@ -277,13 +563,31 @@ sudo ./scripts/service_health.sh
               {"t":"ok","v":"2026-05-16 14:23:09 [INFO] === Provisioning complete for devops ==="},
               {"t":"plain","v":""},
               {"t":"plain","v":"uid=1001(devops) gid=1001(portteam) groups=1001(portteam)"}
-            ]'></div>
+            ]'
+            ></div>
           </div>
           <div class="card-usage">
             <span class="usage-label">Usage</span>
-            <code class="usage-cmd" data-copy="sudo ./scripts/user_setup.sh &lt;username&gt; &lt;groupname&gt;">sudo ./scripts/user_setup.sh &lt;username&gt; &lt;groupname&gt;</code>
+            <code
+              class="usage-cmd"
+              data-copy="sudo ./scripts/user_setup.sh &lt;username&gt; &lt;groupname&gt;"
+              >sudo ./scripts/user_setup.sh &lt;username&gt;
+              &lt;groupname&gt;</code
+            >
             <button class="copy-btn" aria-label="Copy command" title="Copy">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                />
+              </svg>
             </button>
           </div>
           <div class="card-log">Log: <code>/var/log/user_setup.log</code></div>
@@ -299,8 +603,9 @@ sudo ./scripts/service_health.sh
             </div>
           </div>
           <p class="card-desc">
-            Archives <code>/home</code> and <code>/etc</code> into date-stamped <code>.tar.gz</code> files,
-            verifies integrity after each archive, and auto-prunes backups older than 7 days.
+            Archives <code>/home</code> and <code>/etc</code> into date-stamped
+            <code>.tar.gz</code> files, verifies integrity after each archive,
+            and auto-prunes backups older than 7 days.
           </p>
           <div class="term-wrap">
             <div class="term-bar">
@@ -308,9 +613,17 @@ sudo ./scripts/service_health.sh
               <span class="tdot tdot-y"></span>
               <span class="tdot tdot-g"></span>
               <span class="term-title">backup.sh</span>
-              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+              <button
+                class="term-replay"
+                aria-label="Replay terminal animation"
+                title="Replay"
+              >
+                ↻
+              </button>
             </div>
-            <div class="term-body" data-lines='[
+            <div
+              class="term-body"
+              data-lines='[
               {"t":"cmd","v":"sudo ./scripts/backup.sh"},
               {"t":"info","v":"2026-05-16 02:00:01 [INFO] Backing up /home → /backup/home_2026-05-16.tar.gz ..."},
               {"t":"ok","v":"2026-05-16 02:00:04 [INFO] SUCCESS — /home backed up | Size: 142.37 MB"},
@@ -318,13 +631,28 @@ sudo ./scripts/service_health.sh
               {"t":"ok","v":"2026-05-16 02:00:05 [INFO] SUCCESS — /etc backed up | Size: 8.21 MB"},
               {"t":"info","v":"2026-05-16 02:00:05 [INFO] Removing backups older than 7 days ..."},
               {"t":"ok","v":"2026-05-16 02:00:05 [INFO] === Backup completed successfully ==="}
-            ]'></div>
+            ]'
+            ></div>
           </div>
           <div class="card-usage">
             <span class="usage-label">Usage</span>
-            <code class="usage-cmd" data-copy="sudo ./scripts/backup.sh">sudo ./scripts/backup.sh</code>
+            <code class="usage-cmd" data-copy="sudo ./scripts/backup.sh"
+              >sudo ./scripts/backup.sh</code
+            >
             <button class="copy-btn" aria-label="Copy command" title="Copy">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                />
+              </svg>
             </button>
           </div>
           <div class="card-log">Log: <code>/var/log/backup.log</code></div>
@@ -340,8 +668,9 @@ sudo ./scripts/service_health.sh
             </div>
           </div>
           <p class="card-desc">
-            Scans every real mounted partition. Logs <code>WARN</code> at 80% and
-            <code>CRITICAL</code> at 95% usage. Exit codes <code>0/1/2</code>
+            Scans every real mounted partition. Logs <code>WARN</code> at 80%
+            and <code>CRITICAL</code> at 95% usage. Exit codes
+            <code>0/1/2</code>
             integrate cleanly with monitoring pipelines.
           </p>
           <div class="term-wrap">
@@ -350,22 +679,48 @@ sudo ./scripts/service_health.sh
               <span class="tdot tdot-y"></span>
               <span class="tdot tdot-g"></span>
               <span class="term-title">disk_monitor.sh</span>
-              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+              <button
+                class="term-replay"
+                aria-label="Replay terminal animation"
+                title="Replay"
+              >
+                ↻
+              </button>
             </div>
-            <div class="term-body" data-lines='[
+            <div
+              class="term-body"
+              data-lines='[
               {"t":"cmd","v":"sudo ./scripts/disk_monitor.sh"},
               {"t":"info","v":"[INFO]  === Disk check started (warn:80% crit:95%) ==="},
               {"t":"ok","v":"[INFO]  OK:       / (/dev/sda1) — 43% | 50G total"},
               {"t":"warn","v":"[WARN]  ALERT:    /var (/dev/sda3) — 83% | 20G total"},
               {"t":"ok","v":"[INFO]  OK:       /boot (/dev/sda2) — 31% | 1.0G total"},
               {"t":"warn","v":"[WARN]  === 1 partition(s) above 80% threshold ==="}
-            ]'></div>
+            ]'
+            ></div>
           </div>
           <div class="card-usage">
             <span class="usage-label">Cron (every 30 min)</span>
-            <code class="usage-cmd" data-copy="*/30 * * * * /opt/bash-automation-toolkit/scripts/disk_monitor.sh">*/30 * * * * /opt/bash-automation-toolkit/scripts/disk_monitor.sh</code>
+            <code
+              class="usage-cmd"
+              data-copy="*/30 * * * * /opt/bash-automation-toolkit/scripts/disk_monitor.sh"
+              >*/30 * * * *
+              /opt/bash-automation-toolkit/scripts/disk_monitor.sh</code
+            >
             <button class="copy-btn" aria-label="Copy command" title="Copy">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                />
+              </svg>
             </button>
           </div>
           <div class="card-log">Log: <code>/var/log/disk_alert.log</code></div>
@@ -381,9 +736,10 @@ sudo ./scripts/service_health.sh
             </div>
           </div>
           <p class="card-desc">
-            Polls <code>sshd</code>, <code>nginx</code>, and <code>firewalld</code> via
-            <code>systemctl</code>. On failure: captures diagnostic output, restarts the
-            service, re-enables it if disabled, and confirms recovery.
+            Polls <code>sshd</code>, <code>nginx</code>, and
+            <code>firewalld</code> via <code>systemctl</code>. On failure:
+            captures diagnostic output, restarts the service, re-enables it if
+            disabled, and confirms recovery.
           </p>
           <div class="term-wrap">
             <div class="term-bar">
@@ -391,9 +747,17 @@ sudo ./scripts/service_health.sh
               <span class="tdot tdot-y"></span>
               <span class="tdot tdot-g"></span>
               <span class="term-title">service_health.sh</span>
-              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+              <button
+                class="term-replay"
+                aria-label="Replay terminal animation"
+                title="Replay"
+              >
+                ↻
+              </button>
             </div>
-            <div class="term-body" data-lines='[
+            <div
+              class="term-body"
+              data-lines='[
               {"t":"cmd","v":"sudo ./scripts/service_health.sh"},
               {"t":"info","v":"[INFO]  === Health check started (3 services) ==="},
               {"t":"ok","v":"[INFO]  sshd — RUNNING"},
@@ -401,16 +765,36 @@ sudo ./scripts/service_health.sh
               {"t":"info","v":"[INFO]  nginx — RESTARTED successfully."},
               {"t":"ok","v":"[INFO]  firewalld — RUNNING"},
               {"t":"ok","v":"[INFO]  === Complete — Failures: 1 | Restarted: 1 ==="}
-            ]'></div>
+            ]'
+            ></div>
           </div>
           <div class="card-usage">
             <span class="usage-label">Cron (every 5 min)</span>
-            <code class="usage-cmd" data-copy="*/5 * * * * /opt/bash-automation-toolkit/scripts/service_health.sh">*/5 * * * * /opt/bash-automation-toolkit/scripts/service_health.sh</code>
+            <code
+              class="usage-cmd"
+              data-copy="*/5 * * * * /opt/bash-automation-toolkit/scripts/service_health.sh"
+              >*/5 * * * *
+              /opt/bash-automation-toolkit/scripts/service_health.sh</code
+            >
             <button class="copy-btn" aria-label="Copy command" title="Copy">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                />
+              </svg>
             </button>
           </div>
-          <div class="card-log">Log: <code>/var/log/service_health.log</code></div>
+          <div class="card-log">
+            Log: <code>/var/log/service_health.log</code>
+          </div>
         </div>
 
         <!-- system_report.sh -->
@@ -423,10 +807,11 @@ sudo ./scripts/service_health.sh
             </div>
           </div>
           <p class="card-desc">
-            Generates a full-page system snapshot: hostname, OS, kernel, uptime, load averages,
-            CPU usage (live 1-second sample), memory, disk, network interfaces, logged-in users,
-            last 5 failed login attempts, critical service status, and recent journal errors.
-            Saves to <code>/root/reports/report_YYYY-MM-DD.txt</code>.
+            Generates a full-page system snapshot: hostname, OS, kernel, uptime,
+            load averages, CPU usage (live 1-second sample), memory, disk,
+            network interfaces, logged-in users, last 5 failed login attempts,
+            critical service status, and recent journal errors. Saves to
+            <code>/root/reports/report_YYYY-MM-DD.txt</code>.
           </p>
           <div class="term-wrap">
             <div class="term-bar">
@@ -434,9 +819,17 @@ sudo ./scripts/service_health.sh
               <span class="tdot tdot-y"></span>
               <span class="tdot tdot-g"></span>
               <span class="term-title">system_report.sh</span>
-              <button class="term-replay" aria-label="Replay terminal animation" title="Replay">↻</button>
+              <button
+                class="term-replay"
+                aria-label="Replay terminal animation"
+                title="Replay"
+              >
+                ↻
+              </button>
             </div>
-            <div class="term-body" data-lines='[
+            <div
+              class="term-body"
+              data-lines='[
               {"t":"cmd","v":"sudo ./scripts/system_report.sh"},
               {"t":"border","v":"╔══════════════════════════════════════════╗"},
               {"t":"border","v":"║   DAILY SYSTEM REPORT — 2026-05-16      ║"},
@@ -460,18 +853,37 @@ sudo ./scripts/service_health.sh
               {"t":"ok","v":"firewalld   : active"},
               {"t":"ok","v":""},
               {"t":"ok","v":"Report saved: /root/reports/report_2026-05-16.txt"}
-            ]'></div>
+            ]'
+            ></div>
           </div>
           <div class="card-usage">
             <span class="usage-label">Cron (daily at 6 AM)</span>
-            <code class="usage-cmd" data-copy="0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh">0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh</code>
+            <code
+              class="usage-cmd"
+              data-copy="0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh"
+              >0 6 * * *
+              /opt/bash-automation-toolkit/scripts/system_report.sh</code
+            >
             <button class="copy-btn" aria-label="Copy command" title="Copy">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                />
+              </svg>
             </button>
           </div>
-          <div class="card-log">Output: <code>/root/reports/report_YYYY-MM-DD.txt</code></div>
+          <div class="card-log">
+            Output: <code>/root/reports/report_YYYY-MM-DD.txt</code>
+          </div>
         </div>
-
       </div>
     </section>
 
@@ -482,7 +894,9 @@ sudo ./scripts/service_health.sh
           <div class="section-num">03</div>
           <div>
             <div class="section-title">SCRIPT REFERENCE</div>
-            <div class="section-sub">Every parameter, behavior, edge case, and exit code — documented</div>
+            <div class="section-sub">
+              Every parameter, behavior, edge case, and exit code — documented
+            </div>
           </div>
         </div>
         <div class="deep-body">
@@ -523,15 +937,32 @@ sudo ./scripts/service_health.sh
         <div class="section-num">04</div>
         <div>
           <div class="section-title">CRON REFERENCE</div>
-          <div class="section-sub">Full schedule — paste into <code>sudo crontab -e</code></div>
+          <div class="section-sub">
+            Full schedule — paste into <code>sudo crontab -e</code>
+          </div>
         </div>
-        <button class="copy-all-btn" id="copyAllCron" aria-label="Copy full crontab">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <button
+          class="copy-all-btn"
+          id="copyAllCron"
+          aria-label="Copy full crontab"
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
           Copy All
         </button>
       </div>
       <div class="cron-block">
-        <pre id="cronContent"># Bash Automation Toolkit — full crontab
+        <pre id="cronContent">
+# Bash Automation Toolkit — full crontab
 # Daily backup at 2:00 AM
 0 2 * * * /opt/bash-automation-toolkit/scripts/backup.sh
 
@@ -542,7 +973,8 @@ sudo ./scripts/service_health.sh
 */5 * * * * /opt/bash-automation-toolkit/scripts/service_health.sh
 
 # Daily system report at 6:00 AM
-0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh</pre>
+0 6 * * * /opt/bash-automation-toolkit/scripts/system_report.sh</pre
+        >
       </div>
     </section>
 
@@ -552,10 +984,22 @@ sudo ./scripts/service_health.sh
         <div class="section-num">05</div>
         <div>
           <div class="section-title">DRY RUN RESULTS</div>
-          <div class="section-sub">bash -n + ShellCheck 0.9.0 · run 2026-05-16</div>
+          <div class="section-sub">
+            bash -n + ShellCheck 0.9.0 · run 2026-05-16
+          </div>
         </div>
         <div class="dryrun-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
           5/5 Passed
         </div>
       </div>
@@ -582,7 +1026,10 @@ sudo ./scripts/service_health.sh
             <span class="dcheck pass">bash -n</span>
             <span class="dcheck pass">shellcheck</span>
           </div>
-          <div class="dryrun-note">Fixed: wired <code>EXCLUDE_TYPES</code> array into <code>df -x</code> flags.</div>
+          <div class="dryrun-note">
+            Fixed: wired <code>EXCLUDE_TYPES</code> array into
+            <code>df -x</code> flags.
+          </div>
         </div>
         <div class="dryrun-card pass">
           <div class="dryrun-name">service_health.sh</div>
@@ -590,7 +1037,9 @@ sudo ./scripts/service_health.sh
             <span class="dcheck pass">bash -n</span>
             <span class="dcheck pass">shellcheck</span>
           </div>
-          <div class="dryrun-note">Fixed: removed two unused placeholder constants.</div>
+          <div class="dryrun-note">
+            Fixed: removed two unused placeholder constants.
+          </div>
         </div>
         <div class="dryrun-card pass">
           <div class="dryrun-name">system_report.sh</div>
@@ -598,7 +1047,10 @@ sudo ./scripts/service_health.sh
             <span class="dcheck pass">bash -n</span>
             <span class="dcheck pass">shellcheck</span>
           </div>
-          <div class="dryrun-note">Fixed: <code>&gt; "$FILE"</code> → <code>: &gt; "$FILE"</code> (truncate idiom).</div>
+          <div class="dryrun-note">
+            Fixed: <code>&gt; "$FILE"</code> →
+            <code>: &gt; "$FILE"</code> (truncate idiom).
+          </div>
         </div>
       </div>
     </section>
@@ -609,51 +1061,135 @@ sudo ./scripts/service_health.sh
         <div class="section-num">06</div>
         <div>
           <div class="section-title">ENGINEERING STANDARDS</div>
-          <div class="section-sub">Every script ships with these guarantees</div>
+          <div class="section-sub">
+            Every script ships with these guarantees
+          </div>
         </div>
       </div>
       <div class="standards-grid">
         <div class="std-card">
           <div class="std-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
           </div>
           <div class="std-title">Strict Mode</div>
-          <div class="std-body"><code>set -euo pipefail</code> + <code>trap ERR</code> with line numbers on every failure. No silent errors, ever.</div>
+          <div class="std-body">
+            <code>set -euo pipefail</code> + <code>trap ERR</code> with line
+            numbers on every failure. No silent errors, ever.
+          </div>
         </div>
         <div class="std-card">
           <div class="std-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
           </div>
           <div class="std-title">Structured Logging</div>
-          <div class="std-body">Every event logged with ISO timestamp and <code>[INFO|WARN|ERROR|CRITICAL]</code> severity. Machine-parseable format.</div>
+          <div class="std-body">
+            Every event logged with ISO timestamp and
+            <code>[INFO|WARN|ERROR|CRITICAL]</code> severity. Machine-parseable
+            format.
+          </div>
         </div>
         <div class="std-card">
           <div class="std-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
           </div>
           <div class="std-title">Auto-Retention</div>
-          <div class="std-body">Backups pruned after 7 days. Reports pruned after 30 days. <code>find -mtime +N -delete</code> on every run.</div>
+          <div class="std-body">
+            Backups pruned after 7 days. Reports pruned after 30 days.
+            <code>find -mtime +N -delete</code> on every run.
+          </div>
         </div>
         <div class="std-card">
           <div class="std-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
           </div>
           <div class="std-title">Exit Codes</div>
-          <div class="std-body">Meaningful exit codes on all scripts — 0 (success), 1 (warn/error), 2 (critical). Nagios/Zabbix compatible.</div>
+          <div class="std-body">
+            Meaningful exit codes on all scripts — 0 (success), 1 (warn/error),
+            2 (critical). Nagios/Zabbix compatible.
+          </div>
         </div>
         <div class="std-card">
           <div class="std-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
           </div>
           <div class="std-title">Root Safety</div>
-          <div class="std-body">Root check at entry via <code>$EUID</code>. Input validated before any destructive operation. 13 reserved system accounts blocked.</div>
+          <div class="std-body">
+            Root check at entry via <code>$EUID</code>. Input validated before
+            any destructive operation. 13 reserved system accounts blocked.
+          </div>
         </div>
         <div class="std-card">
           <div class="std-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
           </div>
           <div class="std-title">No Embedded Secrets</div>
-          <div class="std-body">Passwords are never stored, echoed, or logged. Interactive prompts only. Sudoers validated by <code>visudo -cf</code>.</div>
+          <div class="std-body">
+            Passwords are never stored, echoed, or logged. Interactive prompts
+            only. Sudoers validated by <code>visudo -cf</code>.
+          </div>
         </div>
       </div>
     </section>
@@ -665,20 +1201,69 @@ sudo ./scripts/service_health.sh
           <div class="section-num">07</div>
           <div>
             <div class="section-title">INTERACTIVE PLAYGROUND</div>
-            <div class="section-sub">Simulated execution — 100% frontend · no server · no root needed</div>
+            <div class="section-sub">
+              Simulated execution — 100% frontend · no server · no root needed
+            </div>
           </div>
           <div class="pg-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
             Frontend Only
           </div>
         </div>
 
         <div class="pg-tabs" role="tablist" aria-label="Script selector">
-          <button class="pg-tab active" data-script="user_setup"     role="tab" aria-selected="true">user_setup.sh</button>
-          <button class="pg-tab"        data-script="backup"         role="tab" aria-selected="false">backup.sh</button>
-          <button class="pg-tab"        data-script="disk_monitor"   role="tab" aria-selected="false">disk_monitor.sh</button>
-          <button class="pg-tab"        data-script="service_health" role="tab" aria-selected="false">service_health.sh</button>
-          <button class="pg-tab"        data-script="system_report"  role="tab" aria-selected="false">system_report.sh</button>
+          <button
+            class="pg-tab active"
+            data-script="user_setup"
+            role="tab"
+            aria-selected="true"
+          >
+            user_setup.sh
+          </button>
+          <button
+            class="pg-tab"
+            data-script="backup"
+            role="tab"
+            aria-selected="false"
+          >
+            backup.sh
+          </button>
+          <button
+            class="pg-tab"
+            data-script="disk_monitor"
+            role="tab"
+            aria-selected="false"
+          >
+            disk_monitor.sh
+          </button>
+          <button
+            class="pg-tab"
+            data-script="service_health"
+            role="tab"
+            aria-selected="false"
+          >
+            service_health.sh
+          </button>
+          <button
+            class="pg-tab"
+            data-script="system_report"
+            role="tab"
+            aria-selected="false"
+          >
+            system_report.sh
+          </button>
         </div>
 
         <div class="pg-body">
@@ -698,9 +1283,11 @@ sudo ./scripts/service_health.sh
               <div class="term-body pg-term-body" id="pgTermBody"></div>
             </div>
             <div class="pg-actions">
-              <button class="pg-run-btn"   id="pgRunBtn">▶  Run Script</button>
+              <button class="pg-run-btn" id="pgRunBtn">▶ Run Script</button>
               <button class="pg-clear-btn" id="pgClearBtn">Clear</button>
-              <button class="pg-copy-btn"  id="pgCopyBtn" disabled>Copy Output</button>
+              <button class="pg-copy-btn" id="pgCopyBtn" disabled>
+                Copy Output
+              </button>
             </div>
           </div>
         </div>
@@ -712,7 +1299,10 @@ sudo ./scripts/service_health.sh
       <div class="footer-inner">
         <div class="footer-left">
           <div class="footer-logo">BASH / AUTOMATION TOOLKIT</div>
-          <p class="footer-desc">Production-grade sysadmin automation scripts for RHEL 9. Built by samiulAsumel as part of a Linux Job Ready portfolio.</p>
+          <p class="footer-desc">
+            Production-grade sysadmin automation scripts for RHEL 9. Built by
+            samiulAsumel as part of a Linux Job Ready portfolio.
+          </p>
           <div class="footer-tech">
             <span class="ftag">Bash 5</span>
             <span class="ftag">RHEL 9</span>
@@ -723,9 +1313,24 @@ sudo ./scripts/service_health.sh
         </div>
         <div class="footer-links-col">
           <div class="footer-col-title">Repository</div>
-          <a href="https://github.com/samiulAsumel/bash-automation-toolkit" target="_blank" rel="noopener">GitHub Repo</a>
-          <a href="https://github.com/samiulAsumel/bash-automation-toolkit/tree/main/scripts" target="_blank" rel="noopener">Browse Scripts</a>
-          <a href="https://github.com/samiulAsumel/bash-automation-toolkit/issues" target="_blank" rel="noopener">Issues</a>
+          <a
+            href="https://github.com/samiulAsumel/bash-automation-toolkit"
+            target="_blank"
+            rel="noopener"
+            >GitHub Repo</a
+          >
+          <a
+            href="https://github.com/samiulAsumel/bash-automation-toolkit/tree/main/scripts"
+            target="_blank"
+            rel="noopener"
+            >Browse Scripts</a
+          >
+          <a
+            href="https://github.com/samiulAsumel/bash-automation-toolkit/issues"
+            target="_blank"
+            rel="noopener"
+            >Issues</a
+          >
         </div>
         <div class="footer-links-col">
           <div class="footer-col-title">Navigation</div>
@@ -737,12 +1342,24 @@ sudo ./scripts/service_health.sh
         </div>
         <div class="footer-links-col">
           <div class="footer-col-title">Author</div>
-          <a href="https://github.com/samiulAsumel" target="_blank" rel="noopener">@samiulAsumel</a>
-          <a href="https://github.com/samiulAsumel" target="_blank" rel="noopener">GitHub Profile</a>
+          <a
+            href="https://github.com/samiulAsumel"
+            target="_blank"
+            rel="noopener"
+            >@samiulAsumel</a
+          >
+          <a
+            href="https://github.com/samiulAsumel"
+            target="_blank"
+            rel="noopener"
+            >GitHub Profile</a
+          >
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">&copy; <span id="year"></span> samiulAsumel. All rights reserved.</p>
+        <p class="footer-copy">
+          &copy; <span id="year"></span> samiulAsumel. All rights reserved.
+        </p>
         <p class="footer-copy">Open source — MIT License</p>
       </div>
     </footer>
@@ -750,8 +1367,34 @@ sudo ./scripts/service_health.sh
     <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
 
     <noscript>
-      <div style="position:fixed;inset:0;z-index:9999;background:#020202;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:15px;color:#7e96b0;text-align:center;padding:32px;line-height:2">
-        <div><strong style="color:#22c55e;display:block;margin-bottom:8px;font-size:18px">JavaScript Required</strong>Bash Automation Toolkit requires JavaScript for terminal animations.</div>
+      <div
+        style="
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          background: #020202;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: monospace;
+          font-size: 15px;
+          color: #7e96b0;
+          text-align: center;
+          padding: 32px;
+          line-height: 2;
+        "
+      >
+        <div>
+          <strong
+            style="
+              color: #22c55e;
+              display: block;
+              margin-bottom: 8px;
+              font-size: 18px;
+            "
+            >JavaScript Required</strong
+          >Bash Automation Toolkit requires JavaScript for terminal animations.
+        </div>
       </div>
     </noscript>
 
