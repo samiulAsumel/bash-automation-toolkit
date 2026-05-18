@@ -1013,6 +1013,15 @@ header {
   .gh-btn { padding: 5px 10px; font-size: 11px; }
 }
 
+/* ── Reduced Motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow-dot { animation: none; }
+  .cursor { animation: none; opacity: 1; }
+  .status-running { animation: none; }
+  .script-card, .std-card { transition: border-color .25s, box-shadow .25s; }
+  .btn-primary:hover, .pg-run-btn:hover:not(:disabled) { transform: none; }
+}
+
 /* Small Mobile */
 @media (max-width: 480px) {
   html { font-size: 13px; }

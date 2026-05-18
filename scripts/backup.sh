@@ -72,12 +72,12 @@ for src in "${SOURCES[@]}"; do
         else
             log "ERROR" "Archive '$ARCHIVE' failed integrity check."
             rm -f "$ARCHIVE"
-            (( ERRORS++ ))
+            (( ERRORS += 1 ))
         fi
     else
         log "ERROR" "tar failed for '$src'."
         rm -f "$ARCHIVE"
-        (( ERRORS++ ))
+        (( ERRORS += 1 ))
     fi
 done
 

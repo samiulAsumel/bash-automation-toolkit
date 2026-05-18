@@ -1,6 +1,32 @@
 # Bash Automation Toolkit
 
-Production-grade Bash scripts for Linux systems administration — user provisioning, automated backups, disk monitoring, service health checks, and daily system reporting. Written to RHEL 9 / CentOS Stream 9 standards with strict mode (`set -euo pipefail`), full error trapping, and structured logging throughout.
+![ShellCheck](https://img.shields.io/badge/ShellCheck-passing-22c55e?logo=gnubash&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-5.x-4EAA25?logo=gnubash&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-RHEL%209-EE0000?logo=redhat&logoColor=white)
+![Strict Mode](https://img.shields.io/badge/set%20-euo%20pipefail-informational)
+![License](https://img.shields.io/badge/License-MIT-blue)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-22c55e)](https://samiulAsumel.github.io/bash-automation-toolkit)
+
+Production-grade Bash scripts for RHEL 9 systems administration — user provisioning, automated backups, disk monitoring, service health watchdog, and daily system reporting. Each script ships with `set -euo pipefail`, `trap ERR` with line-number reporting, structured `[INFO|WARN|ERROR|CRITICAL]` logging, and Nagios/Zabbix-compatible exit codes.
+
+**[→ Interactive Demo & Documentation](https://samiulAsumel.github.io/bash-automation-toolkit)**
+
+---
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Quick Install](#quick-install)
+- [Scripts](#scripts)
+  - [user_setup.sh](#1-user_setupsh--user-provisioning)
+  - [backup.sh](#2-backupsh--backup--archive)
+  - [disk_monitor.sh](#3-disk_monitorsh--disk-alerting)
+  - [service_health.sh](#4-service_healthsh--service-watchdog)
+  - [system_report.sh](#5-system_reportsh--daily-system-report)
+- [Cron Schedule](#cron-schedule)
+- [Log Reference](#log-reference)
+- [Security](#security)
+- [License](#license)
 
 ---
 
@@ -11,35 +37,41 @@ Production-grade Bash scripts for Linux systems administration — user provisio
 | OS | RHEL 9 / CentOS Stream 9 / Rocky Linux 9 / AlmaLinux 9 |
 | Shell | Bash 5.x |
 | Privileges | Root (`sudo`) required for all scripts |
-| Tools | `tar`, `df`, `systemctl`, `journalctl`, `useradd`, `visudo`, `bc`, `lastb` (standard on RHEL) |
+| Tools | `tar`, `df`, `systemctl`, `journalctl`, `useradd`, `visudo`, `bc`, `lastb` — all standard on RHEL 9 |
 
 ---
 
-## Directory Structure
+## Quick Install
 
-```
-bash-automation-toolkit/
-└── scripts/
-    ├── user_setup.sh       # User provisioning + sudo
-    ├── backup.sh           # /home and /etc archival
-    ├── disk_monitor.sh     # Disk threshold alerting
-    ├── service_health.sh   # Service watchdog + auto-restart
-    └── system_report.sh    # Daily system snapshot report
+```bash
+# Clone to a system-wide location accessible by root
+git clone https://github.com/samiulAsumel/bash-automation-toolkit.git \
+  /opt/bash-automation-toolkit
+
+# Set execute bits and lock ownership to root
+cd /opt/bash-automation-toolkit
+chmod +x scripts/*.sh
+chown -R root:root scripts/
+
+# Verify all scripts pass ShellCheck (0.9.0+)
+shellcheck scripts/*.sh
+# Expected: No issues found.
+
+# Run a quick sanity check
+sudo ./scripts/service_health.sh
+# Expected: [INFO] === Health check complete — Failures: 0 ===
 ```
 
 ---
 
 ## Scripts
 
----
+### 1. `user_setup.sh` — User Provisioning
 
-### Script 1 — `user_setup.sh`
-
-Creates a new Linux user account with a primary group, home directory, and sudo privileges. It validates both the username and group name against safe naming rules (lowercase alphanumeric, max 32 chars), refuses to modify reserved system accounts, creates the group if it doesn't exist, forces a password change on first login for security, writes a per-user sudoers file to `/etc/sudoers.d/`, and validates it with `visudo` before activating. Every action is logged to `/var/log/user_setup.log`.
+Creates a Linux user with a primary group, sets an interactive password, enforces a first-login password change via `chage -d 0`, and installs a per-user sudoers drop-in validated by `visudo -cf` before activation. Idempotent: if the user already exists, only group membership is updated; no destructive changes are made.
 
 **Usage:**
 ```bash
-sudo chmod +x scripts/user_setup.sh
 sudo ./scripts/user_setup.sh <username> <groupname>
 ```
 
@@ -48,13 +80,11 @@ sudo ./scripts/user_setup.sh <username> <groupname>
 sudo ./scripts/user_setup.sh devops portteam
 ```
 
-**Sample Output:**
+**Sample output:**
 ```
 2026-05-16 14:23:01 [INFO] Group 'portteam' created.
 2026-05-16 14:23:01 [INFO] User 'devops' created with home directory.
 Set password for 'devops':
-New password:
-Retype new password:
 passwd: all authentication tokens updated successfully.
 2026-05-16 14:23:09 [INFO] Password set for 'devops'; first-login change enforced.
 2026-05-16 14:23:09 [INFO] Sudo access granted to 'devops' via /etc/sudoers.d/devops.
@@ -62,93 +92,90 @@ passwd: all authentication tokens updated successfully.
 
 Verification:
 uid=1001(devops) gid=1001(portteam) groups=1001(portteam)
-Sudoers file: /etc/sudoers.d/devops
-devops:x:1001:1001:Provisioned by user_setup.sh:/home/devops:/bin/bash
 ```
 
-**Verify it works:**
-```bash
-# Confirm user exists
-id devops
+**Key behaviours:**
+- Validates username/groupname against `^[a-z][a-z0-9_-]{0,31}$`
+- Blocks 13 reserved system accounts (`root`, `bin`, `daemon`, `adm`, `lp`, `sync`, `shutdown`, `halt`, `mail`, `news`, `uucp`, `operator`, `games`)
+- Writes `0440`-mode sudoers drop-in to `/etc/sudoers.d/<username>`; removes and exits 1 if `visudo -cf` fails
+- Passwords are never generated, stored, or logged — interactive `passwd` prompt only
 
-# Confirm sudo works
-su - devops -c "sudo whoami"
-
-# Confirm it survives reboot
-sudo reboot
-id devops
-```
+**Exit codes:** `0` success · `1` any failure
 
 ---
 
-### Script 2 — `backup.sh`
+### 2. `backup.sh` — Backup & Archive
 
-Archives `/home` and `/etc` into separate compressed `.tar.gz` files under `/backup/`, named with a full datetime stamp (e.g. `home_2026-05-16_02-00-01.tar.gz`). Before starting, it verifies at least 500 MB of free space is available on the backup partition. After each archive is created, it runs a tar integrity check; any corrupt archive is deleted and an error is logged. Backups older than 7 days are automatically pruned. All outcomes — success, failure, and cleanup — are appended to `/var/log/backup.log`.
+Archives `/home` and `/etc` into date-time-stamped `.tar.gz` files under `/backup/`. After each archive, runs an integrity check with `tar -tzf`; any corrupt archive is deleted and counted as an error (remaining archives still proceed). Prunes archives older than 7 days on every run.
 
 **Usage:**
 ```bash
-sudo chmod +x scripts/backup.sh
 sudo ./scripts/backup.sh
 ```
 
-**Sample Output:**
+**Sample output:**
 ```
+2026-05-16 02:00:01 [INFO] Available: 48.3 GB — sufficient (need 500 MB minimum).
 2026-05-16 02:00:01 [INFO] Backing up '/home' → '/backup/home_2026-05-16_02-00-01.tar.gz' ...
 2026-05-16 02:00:04 [INFO] SUCCESS — '/home' backed up. Archive: home_2026-05-16_02-00-01.tar.gz | Size: 142.37 MB
-2026-05-16 02:00:04 [INFO] Backing up '/etc' → '/backup/etc_2026-05-16_02-00-01.tar.gz' ...
-2026-05-16 02:00:05 [INFO] SUCCESS — '/etc' backed up. Archive: etc_2026-05-16_02-00-01.tar.gz | Size: 8.21 MB
+2026-05-16 02:00:04 [INFO] Backing up '/etc' → '/backup/etc_2026-05-16_02-00-04.tar.gz' ...
+2026-05-16 02:00:05 [INFO] SUCCESS — '/etc' backed up. Archive: etc_2026-05-16_02-00-04.tar.gz | Size: 8.21 MB
 2026-05-16 02:00:05 [INFO] Removing backups older than 7 days from '/backup/' ...
 2026-05-16 02:00:05 [INFO] === Backup completed successfully ===
 ```
 
-**Add to cron (runs daily at 2:00 AM):**
-```bash
-sudo crontab -e
-# Add:
-0 2 * * * /path/to/bash-automation-toolkit/scripts/backup.sh
-```
+**Configurable variables** (top of script):
+
+| Variable | Default | Description |
+|---|---|---|
+| `BACKUP_DIR` | `/backup` | Archive destination; created automatically |
+| `RETENTION_DAYS` | `7` | Auto-prune archives older than N days |
+| `SOURCES` | `(/home /etc)` | Bash array of directories to archive |
+
+**Exit codes:** `0` all archives created and verified · `1` any archive failed or insufficient disk space
 
 ---
 
-### Script 3 — `disk_monitor.sh`
+### 3. `disk_monitor.sh` — Disk Alerting
 
-Iterates over all real mounted partitions (automatically excluding pseudo-filesystems like `tmpfs`, `devtmpfs`, `squashfs`, and loop devices) and compares usage against two thresholds: **WARN at 80%** and **CRITICAL at 95%**. For each partition it logs a status line (`OK`, `WARN`, or `CRITICAL`) with filesystem name, mount point, size, used, and available space to `/var/log/disk_alert.log`. The script exits with code `0` (all clear), `1` (one or more partitions over the warn threshold), or `2` (one or more partitions in critical state) — making it suitable for monitoring integrations.
+Scans all real mounted partitions, excluding 19 pseudo-filesystem types (`tmpfs`, `devtmpfs`, `sysfs`, `proc`, …) and loop/udev/none devices. Logs `OK`, `WARN`, or `CRITICAL` per partition with full size stats. Returns Nagios/Zabbix-compatible exit codes for direct monitoring integration.
 
 **Usage:**
 ```bash
-sudo chmod +x scripts/disk_monitor.sh
 sudo ./scripts/disk_monitor.sh
 ```
 
-**Sample Output:**
+**Sample output:**
 ```
-2026-05-16 09:30:00 [INFO] === Disk usage check started (threshold: 80%, critical: 95%) ===
-2026-05-16 09:30:00 [INFO] OK:       / (/dev/sda1) — 43% used | Size:50G Used:21G Avail:26G
-2026-05-16 09:30:00 [WARN] ALERT:    /var (/dev/sda3) — 83% used | Size:20G Used:16G Avail:3.4G
-2026-05-16 09:30:00 [INFO] OK:       /boot (/dev/sda2) — 31% used | Size:1.0G Used:312M Avail:712M
-2026-05-16 09:30:00 [WARN] === Check complete — 1 partition(s) above 80% threshold ===
+2026-05-16 09:30:00 [INFO    ] === Disk usage check started (threshold: 80%, critical: 95%) ===
+2026-05-16 09:30:00 [INFO    ] OK:       / (/dev/sda1) — 43% used | Size:50G Used:21G Avail:26G
+2026-05-16 09:30:00 [WARN    ] ALERT:    /var (/dev/sda3) — 83% used | Size:20G Used:16G Avail:3.4G
+2026-05-16 09:30:00 [INFO    ] OK:       /boot (/dev/sda2) — 31% used | Size:1.0G Used:312M Avail:712M
+2026-05-16 09:30:00 [WARN    ] === Check complete — 1 partition(s) above 80% threshold ===
 ```
 
-**Add to cron (every 30 minutes):**
-```bash
-sudo crontab -e
-# Add:
-*/30 * * * * /path/to/bash-automation-toolkit/scripts/disk_monitor.sh
-```
+**Configurable variables:**
+
+| Variable | Default | Description |
+|---|---|---|
+| `THRESHOLD` | `80` | WARN level (%) |
+| `CRITICAL_THRESHOLD` | `95` | CRITICAL level (%) |
+| `ALERT_LOG` | `/var/log/disk_alert.log` | Log destination |
+
+**Exit codes:** `0` all clear · `1` ≥ 1 partition at WARN · `2` ≥ 1 partition at CRITICAL
 
 ---
 
-### Script 4 — `service_health.sh`
+### 4. `service_health.sh` — Service Watchdog
 
-Monitors `sshd`, `nginx`, and `firewalld` using `systemctl is-active`. If any service is found down, it captures the pre-failure status output for diagnostics, attempts a `systemctl start`, waits 3 seconds, then confirms recovery. If the service is also disabled (which would cause the outage to recur on reboot), it re-enables it automatically. Each event — healthy, restarted, or failed-to-restart — is logged with a full timestamp to `/var/log/service_health.log`. The services list is easily extended by adding names to the `SERVICES` array at the top of the script.
+Monitors `sshd`, `nginx`, and `firewalld` via `systemctl is-active`. On failure: captures pre-restart `systemctl status` output for post-mortem, restarts the service, waits 3 seconds for settle, verifies recovery, and re-enables the unit if it was disabled (preventing repeat failures after reboot). Extend by adding names to the `SERVICES` array at the top of the script.
 
 **Usage:**
 ```bash
-sudo chmod +x scripts/service_health.sh
 sudo ./scripts/service_health.sh
 ```
 
-**Sample Output:**
+**Sample output:**
 ```
 2026-05-16 10:05:01 [INFO] === Service health check started (3 services) ===
 2026-05-16 10:05:01 [INFO] sshd — RUNNING
@@ -158,88 +185,38 @@ sudo ./scripts/service_health.sh
 2026-05-16 10:05:04 [INFO] === Health check complete — Failures: 1 | Restarted: 1 ===
 ```
 
-**Add to cron (every 5 minutes):**
-```bash
-sudo crontab -e
-# Add:
-*/5 * * * * /path/to/bash-automation-toolkit/scripts/service_health.sh
-```
+**Exit codes:** `0` all services healthy · `1` one or more services were found down
 
 ---
 
-### Script 5 — `system_report.sh`
+### 5. `system_report.sh` — Daily System Report
 
-Generates a comprehensive daily system health snapshot covering: hostname, OS, and kernel identity; uptime and 1/5/15-minute load averages; a 1-second CPU usage sample with top 5 CPU consumers; memory usage via `/proc/meminfo`; disk usage across all real partitions; active network interfaces with IP addresses; currently logged-in users; the last 5 failed login attempts from `/var/log/btmp` (or journald as fallback); status of critical services (`sshd`, `nginx`, `firewalld`, `chronyd`); and recent kernel/system errors from journald. The report is saved to `/root/reports/report_YYYY-MM-DD.txt` and also printed to stdout. Reports older than 30 days are auto-pruned.
+Generates a 10-section system health snapshot. Tees output simultaneously to stdout and `/root/reports/report_YYYY-MM-DD.txt`. Idempotent — re-running today overwrites today's report. Prunes reports older than 30 days on each run.
+
+**Sections covered:**
+1. System Identity (hostname, OS, kernel, arch)
+2. Uptime & Load (uptime, 1/5/15-min load averages, CPU count)
+3. CPU Usage (live 1-second sample from `/proc/stat`, top 5 consumers)
+4. Memory (free -h, precise kB usage from `/proc/meminfo`)
+5. Disk Usage (all real partitions)
+6. Network Interfaces (`ip -brief address`)
+7. Currently Logged-in Users
+8. Last 5 Failed Login Attempts (`lastb` or journald fallback)
+9. Critical Service Status (sshd, nginx, firewalld, chronyd)
+10. Recent Kernel/System Errors (last 24 h via journald)
 
 **Usage:**
 ```bash
-sudo chmod +x scripts/system_report.sh
 sudo ./scripts/system_report.sh
 ```
 
-**Sample Output:**
-```
-╔══════════════════════════════════════════════════════════╗
-║           DAILY SYSTEM REPORT — 2026-05-16           ║
-╚══════════════════════════════════════════════════════════╝
-Generated: 2026-05-16 06:00:01
-
-══════════════════════════════════════════════════════════
-  SYSTEM IDENTITY
-══════════════════════════════════════════════════════════
-
-Hostname      : rhel9-server.lab.local
-OS            : Red Hat Enterprise Linux 9.4 (Plow)
-Kernel        : 5.14.0-427.el9.x86_64
-Architecture  : x86_64
-
-══════════════════════════════════════════════════════════
-  UPTIME & LOAD
-══════════════════════════════════════════════════════════
-
-up 3 days, 14 hours, 22 minutes
-Load averages (1m / 5m / 15m): 0.12 / 0.08 / 0.05
-CPU cores     : 4
-
-══════════════════════════════════════════════════════════
-  MEMORY USAGE
-══════════════════════════════════════════════════════════
-
-              total        used        free      shared  buff/cache   available
-Mem:           7.6G        1.2G        4.9G         12M        1.4G        6.1G
-Swap:          2.0G          0B        2.0G
-
-══════════════════════════════════════════════════════════
-  LAST 5 FAILED LOGIN ATTEMPTS
-══════════════════════════════════════════════════════════
-
-root     ssh:notty    203.0.113.45     Fri May 16 03:12:44 2026
-admin    ssh:notty    198.51.100.22    Fri May 16 03:11:09 2026
-...
-
-Report saved  : /root/reports/report_2026-05-16.txt
-```
-
-**Add to cron (daily at 6:00 AM):**
-```bash
-sudo crontab -e
-# Add:
-0 6 * * * /path/to/bash-automation-toolkit/scripts/system_report.sh
-```
+**Exit codes:** `0` always · `1` only if ERR trap fires on an unexpected failure
 
 ---
 
-## Making Scripts Executable
+## Cron Schedule
 
-```bash
-chmod +x scripts/*.sh
-```
-
----
-
-## Full Crontab Reference
-
-Edit with `sudo crontab -e` and add all entries at once:
+Edit with `sudo crontab -e` and add:
 
 ```cron
 # Daily backup at 2:00 AM
@@ -263,29 +240,37 @@ sudo crontab -l
 
 ---
 
-## Log File Reference
+## Log Reference
 
-| Script | Log Location |
-|---|---|
-| `user_setup.sh` | `/var/log/user_setup.log` |
-| `backup.sh` | `/var/log/backup.log` |
-| `disk_monitor.sh` | `/var/log/disk_alert.log` |
-| `service_health.sh` | `/var/log/service_health.log` |
-| `system_report.sh` | `/root/reports/report_YYYY-MM-DD.txt` |
+| Script | Log Location | Format |
+|---|---|---|
+| `user_setup.sh` | `/var/log/user_setup.log` | `YYYY-MM-DD HH:MM:SS [LEVEL] message` |
+| `backup.sh` | `/var/log/backup.log` | `YYYY-MM-DD HH:MM:SS [LEVEL] message` |
+| `disk_monitor.sh` | `/var/log/disk_alert.log` | `YYYY-MM-DD HH:MM:SS [LEVEL] message` |
+| `service_health.sh` | `/var/log/service_health.log` | `YYYY-MM-DD HH:MM:SS [LEVEL] message` |
+| `system_report.sh` | `/root/reports/report_YYYY-MM-DD.txt` | Plain-text report |
 
 ---
 
-## Security Notes
+## Security
 
-- All scripts require root — never add SUID bits; use `sudo` instead
-- `user_setup.sh` validates sudoers syntax with `visudo -cf` before activating
-- Passwords are never stored or echoed in any script or log
-- Backup archives exclude cache and trash directories to avoid storing sensitive session data
-- Logs contain timestamps for forensic auditability
+- All scripts require root — never add SUID bits; use `sudo`
+- `user_setup.sh` validates sudoers syntax with `visudo -cf` before activating; removes the file and exits if validation fails
+- Passwords are never generated, stored, echoed, or logged — interactive `passwd` prompt only
+- Backup archives exclude `.cache` and Trash directories to avoid sensitive session data
+- Logs are append-only with ISO timestamps for forensic auditability
+- All scripts validated with ShellCheck 0.9.0 — zero warnings
 
 ---
 
 ## Author
 
-**Samiul** — Linux Systems Administrator | DevOps Engineer
-RHCSA (EX200) Candidate | AWS & Azure | RHEL 9
+**Samiul** — Linux Systems Administrator · DevOps Engineer  
+RHCSA (EX200) Candidate · AWS · Azure · RHEL 9  
+[github.com/samiulAsumel](https://github.com/samiulAsumel)
+
+---
+
+## License
+
+MIT — open source, free to use and modify.

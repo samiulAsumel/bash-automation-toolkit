@@ -31,35 +31,29 @@ require_root
 ALERTS=0
 CRITICAL=0
 
+# Build -x exclusion flags before the process substitution evaluates them
+_DF_ARGS=()
+for _t in "${EXCLUDE_TYPES[@]}"; do _DF_ARGS+=(-x "$_t"); done
+
 log "INFO" "=== Disk usage check started (threshold: ${THRESHOLD}%, critical: ${CRITICAL_THRESHOLD}%) ==="
 
-# Parse df output: skip header, skip excluded fs types, process each line
-while IFS= read -r line; do
-    # Fields: Filesystem  Size  Used  Avail  Use%  Mounted-on
-    FILESYSTEM=$(awk '{print $1}' <<< "$line")
-    USE_PCT=$(awk '{print $5}' <<< "$line" | tr -d '%')
-    MOUNT=$(awk '{print $6}' <<< "$line")
-    SIZE=$(awk '{print $2}' <<< "$line")
-    USED=$(awk '{print $3}' <<< "$line")
-    AVAIL=$(awk '{print $4}' <<< "$line")
+# Parse df output: split all fields with a single read (no awk subshells per line)
+while read -r FILESYSTEM SIZE USED AVAIL USE_PCT MOUNT; do
+    USE_PCT="${USE_PCT%%%}"   # strip trailing %
 
     # Skip non-numeric usage (can happen with some pseudo mounts)
     [[ "$USE_PCT" =~ ^[0-9]+$ ]] || continue
 
     if (( USE_PCT >= CRITICAL_THRESHOLD )); then
         log "CRITICAL" "CRITICAL: $MOUNT ($FILESYSTEM) — ${USE_PCT}% used | Size:$SIZE Used:$USED Avail:$AVAIL"
-        (( CRITICAL++ ))
-        (( ALERTS++ ))
+        (( CRITICAL += 1 ))
+        (( ALERTS += 1 ))
     elif (( USE_PCT >= THRESHOLD )); then
         log "WARN"     "ALERT:    $MOUNT ($FILESYSTEM) — ${USE_PCT}% used | Size:$SIZE Used:$USED Avail:$AVAIL"
-        (( ALERTS++ ))
+        (( ALERTS += 1 ))
     else
         log "INFO"     "OK:       $MOUNT ($FILESYSTEM) — ${USE_PCT}% used | Size:$SIZE Used:$USED Avail:$AVAIL"
     fi
-
-# Build -x exclusion flags from array
-_DF_ARGS=()
-for _t in "${EXCLUDE_TYPES[@]}"; do _DF_ARGS+=(-x "$_t"); done
 
 done < <(df "${_DF_ARGS[@]}" --output=source,size,used,avail,pcent,target \
     | tail -n +2 \

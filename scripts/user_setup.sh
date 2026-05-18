@@ -99,4 +99,4 @@ echo ""
 echo "Verification:"
 id "$USERNAME"
 echo "Sudoers file: $SUDOERS_FILE"
-grep "$USERNAME" /etc/passwd
+grep "^${USERNAME}:" /etc/passwd

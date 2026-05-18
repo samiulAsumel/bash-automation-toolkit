@@ -67,8 +67,12 @@ TOTAL1=$(( u1+n1+s1+i1+io1+irq1+sirq1 ))
 TOTAL2=$(( u2+n2+s2+i2+io2+irq2+sirq2 ))
 IDLE_DIFF=$(( i2 - i1 ))
 TOTAL_DIFF=$(( TOTAL2 - TOTAL1 ))
-CPU_USED=$(( 100 * (TOTAL_DIFF - IDLE_DIFF) / TOTAL_DIFF ))
-printf 'CPU Usage     : %d%%\n' "$CPU_USED"
+if (( TOTAL_DIFF > 0 )); then
+    CPU_USED=$(( 100 * (TOTAL_DIFF - IDLE_DIFF) / TOTAL_DIFF ))
+    printf 'CPU Usage     : %d%%\n' "$CPU_USED"
+else
+    printf 'CPU Usage     : N/A (sampling error)\n'
+fi
 
 # Top 5 CPU-consuming processes
 printf '\nTop 5 CPU consumers:\n'

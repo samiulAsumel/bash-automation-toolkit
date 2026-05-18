@@ -57,7 +57,7 @@ for SERVICE in "${SERVICES[@]}"; do
         log "INFO" "$SERVICE — RUNNING"
     else
         log "WARN" "$SERVICE — DOWN. Attempting restart..."
-        (( FAILURES++ ))
+        (( FAILURES += 1 ))
 
         # Capture pre-restart status for the log
         STATUS_OUTPUT=$(systemctl status "$SERVICE" --no-pager --lines=5 2>&1 || true)
@@ -69,7 +69,7 @@ for SERVICE in "${SERVICES[@]}"; do
 
             if is_active "$SERVICE"; then
                 log "INFO" "$SERVICE — RESTARTED successfully."
-                (( RESTARTED++ ))
+                (( RESTARTED += 1 ))
 
                 # Re-enable if it was somehow disabled (prevents repeat failures after reboot)
                 if ! is_enabled "$SERVICE"; then
